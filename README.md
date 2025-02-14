@@ -2,6 +2,9 @@
 
 Welcome to the DataSalaries, an interactive tool designed to analyze and visualize salary trends in the data science field.
 
+## Contributors
+Rashid Mammadov, Karlygash Zhakupbayeva, Jessie Zhang, Tianjiao Jiang
+
 ## Summary
 
 DataSalaries is an interactive dashboard designed to provide in-depth analysis and visualization of salary trends within the data science field. By examining trends over time and comparing salaries across various roles, experience levels, and work environments, the dashboard delivers actionable insights for job seekers, employers, and industry analysts. Our goal is to help users make informed decisions about compensation and career planning based on reliable, data-driven insights.
@@ -50,5 +53,3 @@ We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING
 ## Dataset Attribution
 This project uses data from the [Global Tech Salary Dataset](https://www.kaggle.com/datasets/yaaryiitturan/global-tech-salary-dataset/code) available on Kaggle.  
 
-## Contributors
-Rashid Mammadov, Jessie Zhang, Karlygash Zhakupbayeva, Tianjiao Jiang
