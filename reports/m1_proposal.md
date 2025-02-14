@@ -16,8 +16,8 @@ Additionally, interactive filtering will allow users to explore pattern changes 
 ## Description of the Data
 <!-- Provide an overview of the data sources, structure, and key attributes. -->
 We will be visualizing a dataset containing approximately 5,000 records describing salaries of various roles in the data science field. Each record has 11 associated variable (we will be using 8 of them) that describe the following characteristics that we think would be helpful in understanding the salary trends:
-- Compensation info (Numeric) **(Key Focus)**: `salary_in_usd`
-- Time info (Numeric): `work_year`
+- Compensation info (Numerical) **(Key Focus)**: `salary_in_usd`
+- Time info (Numerical): `work_year`
 - Job info (Categorical): `job_title`, `experience_level` (Entry-level, Mid-level, Senior-level, or Executive-level), `employment_type` (Full Time or not), `remote_ratio` (On_site, Hybrid, or Fully Remote)
 - Location info (Categorical): `company_location`
 - Company info (Categorical): `company_size` (Small, Medium, or Large)
