@@ -1,4 +1,4 @@
-# 💰 DataSalaries - Explore Salary Trends in Data Science Roles  📊💼
+# 💰 DataSalaries - Explore Salary Trends in Data Science Roles 💼
 
 Welcome to the DataSalaries, an interactive tool designed to analyze and visualize salary trends in the data science field.
 
@@ -19,7 +19,7 @@ Data-related job salaries vary widely based on experience, location, industry, a
 The dashboard provides an intuitive interface for exploring salary trends across multiple dimensions. Users can interact with visualizations to compare salaries by role, experience level, company location, and work arrangement.
 - TODO
 
-## Developer Note:
+## Developer Note
 To use this dashboard on your local machine, please follow the instructions provided below.
 
 1. **Clone the repository and change directory to the project root:**
