@@ -83,6 +83,13 @@ Alex is actively exploring job opportunities in the data science field and wants
 In summary, Alex's use of the app enables him to make informed decisions regarding his job search and salary expectations, and he can now prioritize roles and locations that align with his career goals and desired compensation.
 
 ## App Sketch and Description
-<!-- Describe the planned application, including its functionality and features. -->
 
-![App Sketch](path/to/image.png)
+![App Sketch](img/sketch.png)  
+
+The app contains a main dashboard that visualizes salary trends for data specialists across different job roles, experience levels, locations, and company sizes. The landing page displays multiple charts representing salary distributions, allowing users to explore how salaries vary over time and across different categories.  
+
+From the sidebar, users can filter the displayed salary data by `year`, `job title`, `experience level`, and `employment type`. Selecting different filters updates the visualizations dynamically, providing a customized view of salary trends.  
+
+The **line chart** in the top center shows salary trends from 2020 to 2024 for different job roles, helping users track salary growth patterns. The **map chart** on the top right displays average salaries by company location, allowing users to compare salaries across different regions. Below, the **bar chart** presents salary distributions by experience level, illustrating how salaries increase with expertise. The **donut chart** on the bottom right breaks down salaries by company size, showing how compensation varies between small, medium, and large companies.  
+
+Users can interact with the dashboard by adjusting filters, hovering over charts to view precise salary figures, and exploring different dimensions of salary data. This dashboard provides an intuitive way for job seekers and industry professionals to analyze salary trends and make informed career or hiring decisions.
