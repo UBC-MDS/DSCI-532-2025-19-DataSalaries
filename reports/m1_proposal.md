@@ -84,7 +84,7 @@ In summary, Alex's use of the app enables him to make informed decisions regardi
 
 ## App Sketch and Description
 
-![App Sketch](img/sketch.png)  
+![App Sketch](../img/sketch.png) 
 
 The app contains a main dashboard that visualizes salary trends for data specialists across different job roles, experience levels, locations, and company sizes. The landing page displays multiple charts representing salary distributions, allowing users to explore how salaries vary over time and across different categories.  
 
