@@ -43,6 +43,11 @@ To use this dashboard on your local machine, please follow the instructions prov
     python app.py
     ```
 
+4. **View the Dashboard:**
+After running the app, open your browser and navigate to: [http://127.0.0.1:8050/](http://127.0.0.1:8050/)
+
+You will see the DataSalaries Dashboard running in your browser.
+
 ## Contributing
 We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) and adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
 
