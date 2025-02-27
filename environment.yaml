@@ -9,7 +9,6 @@ dependencies:
     - altair-all=5.3
     - jupyterlab=4.1  # JupyterLab
     - matplotlib=3.8 
-    - janitor=1.0
     - dash=2.18
     - dash-bootstrap-components=1.7
     - plotly=6.0
@@ -18,3 +17,5 @@ dependencies:
     - pip=24.0
     - pip:
         - dash-vega-components==0.0.1
+        - pyjanitor==0.30.0
+        - gunicorn==23.0.0
