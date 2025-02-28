@@ -18,7 +18,7 @@ server = app.server
 
 # Components
 title = html.H1(
-    'DataSalaries Dashboard ',
+    '💰DataSalaries - Data Science Salary Insights Dashboard',
     style={
         'backgroundColor': 'steelblue',
         'padding': 20,
