@@ -6,7 +6,7 @@ import pandas as pd
 import altair as alt
 
 # Load dataset
-df = pd.read_csv("../data/raw/global_data_salary.csv")
+df = pd.read_csv("data/raw/global_data_salary.csv")
 
 # Convert salary to numeric and filter necessary columns
 df['salary_in_usd'] = pd.to_numeric(df['salary_in_usd'], errors='coerce')
