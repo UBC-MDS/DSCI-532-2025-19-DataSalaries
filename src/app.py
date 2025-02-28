@@ -227,7 +227,8 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
 
     salary_by_company_size_chart = alt.Chart(salary_by_company_size_data).mark_arc(innerRadius=80).encode(
         theta=alt.Theta('salary_in_usd:Q', title="Average Salary"),  
-        color=alt.Color('company_size:N', legend=alt.Legend(title=None, orient="top", offset=-20),
+        color=alt.Color('company_size:N', 
+            scale=alt.Scale(scheme="blues"), legend=alt.Legend(title=None, orient="top", offset=-20),
             sort=['Small (1-50)', 'Medium (51-250)', 'Large (251+)']
         ), 
         tooltip=[alt.Tooltip('company_size', title="Company Size"),
@@ -249,7 +250,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
     # Pie Chart: Average Salary by Remote Type
     salary_by_remote_ratio_chart = alt.Chart(salary_by_remote_ratio_data).mark_arc(innerRadius=80).encode(
         theta=alt.Theta('salary_in_usd:Q', title="Average Salary"),
-        color=alt.Color('remote_ratio:N', legend=alt.Legend(title=None, orient="top", offset=-20),
+        color=alt.Color('remote_ratio:N', scale=alt.Scale(scheme="oranges"), legend=alt.Legend(title=None, orient="top", offset=-20),
             sort=['On-site', 'Hybrid', 'Fully Remote']),
         tooltip=[alt.Tooltip('remote_ratio', title="Remote Type"),
                 alt.Tooltip('salary_in_usd:Q', format=",.0f", title="Avg Salary (USD)"),
