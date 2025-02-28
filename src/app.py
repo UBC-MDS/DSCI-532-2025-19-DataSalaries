@@ -5,16 +5,18 @@ from vega_datasets import data
 import pandas as pd
 import altair as alt
 # Load dataset
-df = pd.read_csv("data/raw/global_data_salary.csv")
+df = pd.read_csv("data/processed/processed_global_data_salary.csv")
+
 # Convert salary to numeric and filter necessary columns
 df['salary_in_usd'] = pd.to_numeric(df['salary_in_usd'], errors='coerce')
-df = df[['work_year', 'job_title', 'experience_level', 'employment_type', 'company_location', 'company_size', 'salary_in_usd']]
+df = df[['work_year', 'job_title', 'experience_level', 'employment_type', 'company_location', 'company_size', 'salary_in_usd', 'remote_ratio']]
+
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 # Components
 title = html.H1(
-    'Data Science Salary Dashboard',
+    '💰DataSalaries - Salary Insights for Data Professionals',
     style={
         'backgroundColor': 'steelblue',
         'padding': 20,
@@ -31,44 +33,64 @@ title = html.H1(
 salary_trend = dvc.Vega(
     id='salary-trend',
     opt={'actions': False},
-    style={'width': '100%'}
+    style={'width': '100%'},
 )
-# Bar chart for average salary by experience level (clustered by year)
+
+# Bar chart for average salary by experience level 
 salary_by_experience_level = dvc.Vega(
     id='salary-by-experience-level',
     opt={'actions': False},
     style={'width': '100%'}
 )
-# Donut chart for average salary by company size
+
+# Pie chart for average salary by company size
 salary_by_company_size = dvc.Vega(
     id='salary-by-company-size',
     opt={'actions': False},
-    style={'width': '100%'}
+    style={'width': '50%', 'margin-left': '50px'}
 )
+
+# Pie chart for average salary by remote type
+salary_by_remote_type = dvc.Vega(
+    id='salary-by-remote-type',
+    opt={'actions': False},
+    style={'width': '50%', 'margin-left': '50px'}
+)
+
 # Sidebar with filters
+exp_level_order = ["Entry-level/Junior", "Mid-level", "Senior-level", "Executive-level"]
+remote_type_order = ["On-site", "Hybrid", "Fully Remote"]
+
 sidebar = dbc.Col([
-    html.H5('Filters'),
+    html.H5('Filters', style={'font-weight': 'bold'}),
     html.Br(),
-    dcc.Dropdown(
+    html.Label("Job Title", style={'font-weight': 'bold'}),
+    dcc.Checklist(
         id='job_filter',
-        options=[{'label': job, 'value': job} for job in df['job_title'].dropna().unique()],
-        multi=True,
-        placeholder="Select Job Title"
+        options=[{'label': html.Span(job, style={'margin-left': '10px'}), 'value': job} for job in df['job_title'].dropna().unique()],
+        inline=False
     ),
     html.Br(),
-    dcc.Dropdown(
+    html.Label("Experience Level", style={'font-weight': 'bold'}),
+    dcc.Checklist(
         id='exp_level_filter',
-        options=[{'label': exp_level, 'value': exp_level} for exp_level in df['experience_level'].dropna().unique()],
-        multi=True,
-        placeholder="Select Experience Level"
+        options=[{'label': html.Span(exp_level, style={'margin-left': '10px'}), 'value': exp_level} for exp_level in exp_level_order],
+        inline=False,
     ),
     html.Br(),
-    dcc.Dropdown(
+    html.Label("Employment Type", style={'font-weight': 'bold'}),
+    dcc.Checklist(
         id='emp_type_filter',
-        options=[{'label': emp_type, 'value': emp_type} for emp_type in df['employment_type'].dropna().unique()],
-        multi=True,
-        placeholder="Select Employment Type"
-    )
+        options=[{'label': html.Span(emp_type, style={'margin-left': '10px'}), 'value': emp_type} for emp_type in df['employment_type'].dropna().unique()],
+        inline=False,
+    ),
+    html.Br(),
+    html.Label("Remote Type", style={'font-weight': 'bold'}),
+    dcc.Checklist(
+        id='remote_type_filter',
+        options=[{'label': html.Span(remote_type, style={'margin-left': '10px'}), 'value': remote_type} for remote_type in remote_type_order],
+        inline=False,
+    ),
 ],
     md=3,
     style={
@@ -77,90 +99,192 @@ sidebar = dbc.Col([
         'border-radius': 3,
     }
 )
+
+# Footer
+footer = html.Footer(
+    [
+        html.Hr(), 
+        html.P("📊DataSalaries Dashboard designed to provide salary trends and insights across various data-related roles by visualizing salary based on job title, experience level, and employment details!", style={'font-size': '14px'}),
+        html.P("👨‍💻Created by Group 19 - Jessie Zhang, Tianjiao Jiang, Rashid Mammadov, Karlygash Zhakupbayeva | ", style={'font-size': '14px', 'display': 'inline'}),
+        html.A("🔗GitHub Repo", href="https://github.com/UBC-MDS/DSCI-532-2025-19-DataSalaries", target="_blank", style={'font-size': '14px', 'color': 'blue', 'display': 'inline'}),
+        html.P(" | 📅Last updated: February 28, 2025", style={'font-size': '14px', 'display': 'inline'}),
+    ],
+    style={
+        'text-align': 'center',
+        'padding': '10px',
+        'background-color': '#f8f9fa',
+        'border-top': '1px solid #ddd',
+        'margin-top': '20px'
+    }
+)
+
 # Layout
 app.layout = dbc.Container([
     dbc.Row(dbc.Col(title)),
     dbc.Row([
         sidebar,
         dbc.Col([
-            dbc.Row([dbc.Col(salary_trend)]),  # Keep the trend line graph
-            dbc.Row([dbc.Col(salary_by_experience_level)]),  # Clustered bar chart for salary by experience level
-            dbc.Row([dbc.Col(salary_by_company_size)]),  # Donut chart for salary by company size
-        ],
-        md=9),
-    ])
+            dbc.Row([
+                dbc.Col(salary_trend, md=7),
+                dbc.Col(salary_by_company_size, md=3)
+            ]), 
+            dbc.Row([
+                dbc.Col(salary_by_experience_level, md=7),
+                dbc.Col(salary_by_remote_type, md=3)
+            ]),
+        ])
+    ]),
+    footer
 ])
+
 @callback(
     Output('salary-trend', "spec"),
     Output('salary-by-experience-level', "spec"),
     Output('salary-by-company-size', "spec"),
+    Output('salary-by-remote-type', "spec"),
     Input('job_filter', "value"),
     Input('exp_level_filter', "value"),
-    Input('emp_type_filter', "value")
+    Input('emp_type_filter', "value"),
+    Input('remote_type_filter', "value")
 )
-def update_charts(selected_jobs, selected_exp_levels, selected_emp_types):
+def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, selected_remote_types):
     # Filter data based on selected filters
     df_filtered = df.copy()
-    # Filter by job title if selected
     if selected_jobs:
         df_filtered = df_filtered[df_filtered['job_title'].isin(selected_jobs)]
-    # Filter by experience level if selected
     if selected_exp_levels:
         df_filtered = df_filtered[df_filtered['experience_level'].isin(selected_exp_levels)]
-    # Filter by employment type if selected
     if selected_emp_types:
         df_filtered = df_filtered[df_filtered['employment_type'].isin(selected_emp_types)]
+    if selected_remote_types:
+        df_filtered = df_filtered[df_filtered['remote_ratio'].isin(selected_remote_types)]
+    
     # **Trend Line Chart** - Average Salary per Year or by Job Title
     if not selected_jobs:
         # If no job title selected, show average salary per year
         avg_salary_per_year = df_filtered.groupby('work_year', as_index=False)['salary_in_usd'].mean()
         salary_trend_chart = alt.Chart(avg_salary_per_year).mark_line().encode(
-            x=alt.X('work_year:O', title='Year'),
-            y=alt.Y('salary_in_usd:Q', title='Average Salary in USD'),
-            tooltip=[alt.Tooltip('salary_in_usd:Q', format="$,.0f")],
+            x=alt.X('work_year:O', title=None, axis=alt.Axis(labelAngle=0)),
+            y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
+            tooltip=['salary_in_usd']
         ).properties(
-            width=800,
-            height=400,
-            title="Average Salary Per Year"
+            width=550,
+            height=370,
+            title="Average Salary Trend Over Year, USD"
         )
+
+        points = alt.Chart(avg_salary_per_year).mark_point(size=60, filled=True, color='coral').encode(
+            x='work_year:O',
+            y='salary_in_usd:Q'
+        )
+        
+        text_labels = alt.Chart(avg_salary_per_year).mark_text(
+            align='center', dy=25, fontSize=12, color="black"
+        ).encode(
+            x='work_year:O',
+            y='salary_in_usd:Q',
+            text=alt.Text('salary_in_usd:Q', format=',.0f')
+        )
+        salary_trend_chart = (salary_trend_chart + points + text_labels).configure_view(stroke=None)
     else:
         # If job titles are selected, show salary trend by job title
         salary_trend_data = df_filtered.groupby(['work_year', 'job_title'], as_index=False)['salary_in_usd'].mean()
         salary_trend_chart = alt.Chart(salary_trend_data).mark_line().encode(
-            x=alt.X('work_year:O', title='Year'),
-            y=alt.Y('salary_in_usd:Q', title='Average Salary in USD'),
-            color='job_title:N',
-            tooltip=[alt.Tooltip('salary_in_usd:Q', format="$,.0f"), 'job_title', 'work_year']  # Format as currency
+            x=alt.X('work_year:O', title=None, axis=alt.Axis(labelAngle=0)),
+            y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
+            color=alt.Color('job_title:N', legend=alt.Legend(title=None, orient="top")),
+            tooltip=[alt.Tooltip('job_title', title="Job Title"),
+                    alt.Tooltip('work_year', title="Year"),
+                    alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
         ).properties(
-            width=800,
-            height=400,
-            title="Salary Trend by Job Title"
+            width=550,
+            height=370,
+            title="Average Salary Trend by Job Titles, USD"
+        ).configure_view(
+            stroke=None
         )
-    # **Clustered Bar Chart** - Average Salary by Experience Level for each Year (Clustered)
+    
+    # Bar Chart: Average Salary by Experience Level Over Time (Half-width)
     salary_by_experience_level_chart = alt.Chart(df_filtered).mark_bar().encode(
-        x=alt.X('work_year:N', title='Year'),  # X-axis is the year
-        y=alt.Y('mean(salary_in_usd):Q', title='Average Salary in USD'),  # Y-axis is the average salary
-        color=alt.Color('experience_level:N', scale=alt.Scale(scheme='set2')),  # Distinct colors for experience levels
-        column='experience_level:N',  # Group by experience level for clustered bars
-        tooltip=[alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f"), 'work_year', 'experience_level']  # Format as currency
+        x=alt.X('experience_level:N', axis=None, sort=['Entry-level/Junior', 'Mid-level', 'Senior-level', 'Executive-level']),  
+        y=alt.Y('mean(salary_in_usd):Q', title=None, axis=alt.Axis(grid=False)),  
+        color=alt.Color(
+            'experience_level:N', 
+            legend=alt.Legend(title=None, orient="top", offset=10),  
+            sort=['Entry-level/Junior', 'Mid-level', 'Senior-level', 'Executive-level']  
+        ),
+        column=alt.Column('work_year:N', title=None, header=alt.Header(labelOrient="bottom")),  
+        tooltip=[alt.Tooltip('work_year', title="Year"),
+                alt.Tooltip('experience_level', title="Experience Level"),
+                alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f", title="Avg Salary (USD)")]  
     ).properties(
-        width=100,  # Width for each bar
-        height=300,
-        title="Average Salary by Experience Level"
+        width=90,
+        height=400,
+        title=alt.TitleParams(
+            text="Average Salary by Experience Level, USD",
+            anchor="middle"  
+        )
+    ).configure_header(
+        labelFontSize=12,
+        titleFontSize=16
     )
-    # **Donut Chart** - Average Salary by Company Size
-    salary_by_company_size_data = df_filtered.groupby('company_size', as_index=False)['salary_in_usd'].mean()
-    salary_by_company_size_chart = alt.Chart(salary_by_company_size_data).mark_arc(innerRadius=100).encode(
-        theta=alt.Theta(field="salary_in_usd", type="quantitative", title="Average Salary in USD"),
-        color=alt.Color('company_size:N', legend=alt.Legend(title="Company Size"), scale=alt.Scale(scheme='tableau20')),
-        tooltip=[alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f"), 'company_size']  # Format as currency
+    
+    salary_by_company_size_data = df_filtered.groupby(['company_size'] , as_index=False)['salary_in_usd'].mean()
+    # Donut Chart: Average Salary by Company Size
+    company_size_labels = {
+    'L': 'Large (251+)',
+    'M': 'Medium (51-250)',
+    'S': 'Small (1-50)'
+    }
+
+    salary_by_company_size_data['company_size'] = salary_by_company_size_data['company_size'].map(company_size_labels)
+    salary_by_company_size_data['percentage'] = (
+    salary_by_company_size_data['salary_in_usd'] / salary_by_company_size_data['salary_in_usd'].sum()
+    ) * 100
+
+
+    salary_by_company_size_chart = alt.Chart(salary_by_company_size_data).mark_arc(innerRadius=80).encode(
+        theta=alt.Theta('salary_in_usd:Q', title="Average Salary"),  
+        color=alt.Color('company_size:N', 
+            scale=alt.Scale(scheme="blues"), legend=alt.Legend(title=None, orient="top", offset=-20),
+            sort=['Small (1-50)', 'Medium (51-250)', 'Large (251+)']
+        ), 
+        tooltip=[alt.Tooltip('company_size', title="Company Size"),
+                alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)"), 
+                alt.Tooltip('percentage:Q', format=".1f", title="Percentage (%)")]
+    ).properties(
+        width=300,  
+        height=400,
+        title=alt.TitleParams(
+            text="Average Salary by Company Size, USD",
+            anchor="middle"
+        )
+    )
+
+    salary_by_remote_ratio_data = df_filtered.groupby('remote_ratio', as_index=False)['salary_in_usd'].mean()
+    salary_by_remote_ratio_data['total_salary'] = salary_by_remote_ratio_data['salary_in_usd'].sum()
+    salary_by_remote_ratio_data['percentage'] = (salary_by_remote_ratio_data['salary_in_usd'] / salary_by_remote_ratio_data['total_salary']) * 100
+
+    # Pie Chart: Average Salary by Remote Type
+    salary_by_remote_ratio_chart = alt.Chart(salary_by_remote_ratio_data).mark_arc(innerRadius=80).encode(
+        theta=alt.Theta('salary_in_usd:Q', title="Average Salary"),
+        color=alt.Color('remote_ratio:N', scale=alt.Scale(scheme="oranges"), legend=alt.Legend(title=None, orient="top", offset=-20),
+            sort=['On-site', 'Hybrid', 'Fully Remote']),
+        tooltip=[alt.Tooltip('remote_ratio', title="Remote Type"),
+                alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)"),
+                alt.Tooltip('percentage:Q', format=".1f", title="Percentage (%)")
+                ]
     ).properties(
         width=300,
-        height=300,
-        title="Average Salary by Company Size"
+        height=400,
+        title=alt.TitleParams(
+            text="Average Salary by Remote Type, USD",
+            anchor="middle"
+        )
     )
-    # Return all three charts
-    return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict(), salary_by_company_size_chart.to_dict()
+
+    return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict(), salary_by_company_size_chart.to_dict(), salary_by_remote_ratio_chart.to_dict()
+
 if __name__ == '__main__':
     app.run(debug=False)
 
