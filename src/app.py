@@ -6,7 +6,7 @@ import pandas as pd
 import altair as alt
 
 # Load dataset
-df = pd.read_csv("../data/raw/global_data_salary.csv")
+df = pd.read_csv("data/raw/global_data_salary.csv")
 
 # Convert salary to numeric and filter necessary columns
 df['salary_in_usd'] = pd.to_numeric(df['salary_in_usd'], errors='coerce')
@@ -14,6 +14,7 @@ df = df[['work_year', 'job_title', 'experience_level', 'employment_type', 'compa
 
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 # Components
 title = html.H1(
@@ -160,4 +161,4 @@ def update_charts(selected_jobs, selected_exp, selected_emp):
     return histogram.to_dict(), scatter.to_dict(), line_chart.to_dict()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
