@@ -4,18 +4,14 @@ import dash_vega_components as dvc
 from vega_datasets import data
 import pandas as pd
 import altair as alt
-
 # Load dataset
 df = pd.read_csv("data/raw/global_data_salary.csv")
-
 # Convert salary to numeric and filter necessary columns
 df['salary_in_usd'] = pd.to_numeric(df['salary_in_usd'], errors='coerce')
 df = df[['work_year', 'job_title', 'experience_level', 'employment_type', 'company_location', 'company_size', 'salary_in_usd']]
-
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
-
 # Components
 title = html.H1(
     'Data Science Salary Dashboard',
@@ -40,6 +36,12 @@ salary_trend = dvc.Vega(
 # Bar chart for average salary by experience level (clustered by year)
 salary_by_experience_level = dvc.Vega(
     id='salary-by-experience-level',
+    opt={'actions': False},
+    style={'width': '100%'}
+)
+# Donut chart for average salary by company size
+salary_by_company_size = dvc.Vega(
+    id='salary-by-company-size',
     opt={'actions': False},
     style={'width': '100%'}
 )
@@ -83,6 +85,7 @@ app.layout = dbc.Container([
         dbc.Col([
             dbc.Row([dbc.Col(salary_trend)]),  # Keep the trend line graph
             dbc.Row([dbc.Col(salary_by_experience_level)]),  # Clustered bar chart for salary by experience level
+            dbc.Row([dbc.Col(salary_by_company_size)]),  # Donut chart for salary by company size
         ],
         md=9),
     ])
@@ -90,6 +93,7 @@ app.layout = dbc.Container([
 @callback(
     Output('salary-trend', "spec"),
     Output('salary-by-experience-level', "spec"),
+    Output('salary-by-company-size', "spec"),
     Input('job_filter', "value"),
     Input('exp_level_filter', "value"),
     Input('emp_type_filter', "value")
@@ -113,7 +117,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types):
         salary_trend_chart = alt.Chart(avg_salary_per_year).mark_line().encode(
             x=alt.X('work_year:O', title='Year'),
             y=alt.Y('salary_in_usd:Q', title='Average Salary in USD'),
-            tooltip=['salary_in_usd']
+            tooltip=[alt.Tooltip('salary_in_usd:Q', format="$,.0f")],
         ).properties(
             width=800,
             height=400,
@@ -126,7 +130,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types):
             x=alt.X('work_year:O', title='Year'),
             y=alt.Y('salary_in_usd:Q', title='Average Salary in USD'),
             color='job_title:N',
-            tooltip=['job_title', 'work_year', 'salary_in_usd']
+            tooltip=[alt.Tooltip('salary_in_usd:Q', format="$,.0f"), 'job_title', 'work_year']  # Format as currency
         ).properties(
             width=800,
             height=400,
@@ -136,17 +140,36 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types):
     salary_by_experience_level_chart = alt.Chart(df_filtered).mark_bar().encode(
         x=alt.X('work_year:N', title='Year'),  # X-axis is the year
         y=alt.Y('mean(salary_in_usd):Q', title='Average Salary in USD'),  # Y-axis is the average salary
-        color='experience_level:N',  # Different colors for experience levels
+        color=alt.Color('experience_level:N', scale=alt.Scale(scheme='set2')),  # Distinct colors for experience levels
         column='experience_level:N',  # Group by experience level for clustered bars
-        tooltip=['work_year', 'experience_level', 'mean(salary_in_usd):Q']  # Tooltip shows experience level and salary
+        tooltip=[alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f"), 'work_year', 'experience_level']  # Format as currency
     ).properties(
-        width=150,  # Width for each bar
-        height=400,
-        title="Average Salary by Experience Level (Clustered by Year)"
-    ).configure_facet(
-        spacing=10  # Adjust the spacing between the clustered bars
+        width=100,  # Width for each bar
+        height=300,
+        title="Average Salary by Experience Level"
     )
-    # Return both charts
-    return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict()
+    # **Donut Chart** - Average Salary by Company Size
+    salary_by_company_size_data = df_filtered.groupby('company_size', as_index=False)['salary_in_usd'].mean()
+    salary_by_company_size_chart = alt.Chart(salary_by_company_size_data).mark_arc(innerRadius=100).encode(
+        theta=alt.Theta(field="salary_in_usd", type="quantitative", title="Average Salary in USD"),
+        color=alt.Color('company_size:N', legend=alt.Legend(title="Company Size"), scale=alt.Scale(scheme='tableau20')),
+        tooltip=[alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f"), 'company_size']  # Format as currency
+    ).properties(
+        width=300,
+        height=300,
+        title="Average Salary by Company Size"
+    )
+    # Return all three charts
+    return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict(), salary_by_company_size_chart.to_dict()
 if __name__ == '__main__':
     app.run(debug=False)
+
+
+
+
+
+
+
+
+
+
