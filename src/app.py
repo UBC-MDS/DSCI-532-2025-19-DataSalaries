@@ -101,6 +101,25 @@ sidebar = dbc.Col([
         'border-radius': 3,
     }
 )
+
+# Footer
+footer = html.Footer(
+    [
+        html.Hr(), 
+        html.P("DataSalaries Dashboard designed to analyze and visualize salary trends in the data science field 📊", style={'font-size': '14px'}),
+        html.P("Created by Group 19 - Jessie Zhang, Tianjiao Jiang, Rashid Mammadov, Karlygash Zhakupbayeva | ", style={'font-size': '14px', 'display': 'inline'}),
+        html.A("GitHub Repo", href="https://github.com/UBC-MDS/DSCI-532-2025-19-DataSalaries", target="_blank", style={'font-size': '14px', 'color': 'blue', 'display': 'inline'}),
+        html.P(" | Last updated: February 28, 2025", style={'font-size': '14px', 'display': 'inline'}),
+    ],
+    style={
+        'text-align': 'center',
+        'padding': '10px',
+        'background-color': '#f8f9fa',
+        'border-top': '1px solid #ddd',
+        'margin-top': '20px'
+    }
+)
+
 # Layout
 app.layout = dbc.Container([
     dbc.Row(dbc.Col(title)),
@@ -116,7 +135,8 @@ app.layout = dbc.Container([
                 dbc.Col(salary_by_remote_type, md=3)
             ]),
         ])
-    ])
+    ]),
+    footer
 ])
 
 @callback(
@@ -268,4 +288,4 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
     return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict(), salary_by_company_size_chart.to_dict(), salary_by_remote_ratio_chart.to_dict()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
