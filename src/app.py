@@ -14,6 +14,7 @@ df = df[['work_year', 'job_title', 'experience_level', 'employment_type', 'compa
 
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 # Components
 title = html.H1(
@@ -160,4 +161,4 @@ def update_charts(selected_jobs, selected_exp, selected_emp):
     return histogram.to_dict(), scatter.to_dict(), line_chart.to_dict()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
