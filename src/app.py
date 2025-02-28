@@ -31,35 +31,19 @@ title = html.H1(
         'margin-left': -10,
     }
 )
-
-table = dash_table.DataTable(
-    id='table',
-    column_selectable="single",
-    selected_columns=['salary_in_usd'], 
-    page_size=5,
-    sort_action='native',
-    filter_action='native',
-)
-
-dropdown = dcc.Dropdown(
-    id='dropdown',
-    options=[{'label': col, 'value': col} for col in df.columns],
-    value=['job_title', 'salary_in_usd', 'company_location'],
-    multi=True
-)
-
-scatter = dvc.Vega(
-    id='scatter',
+# Trend line graph
+salary_trend = dvc.Vega(
+    id='salary-trend',
     opt={'actions': False},
     style={'width': '100%'}
 )
-
-histogram = dvc.Vega(
-    id='histogram',
+# Bar chart for average salary by experience level (clustered by year)
+salary_by_experience_level = dvc.Vega(
+    id='salary-by-experience-level',
     opt={'actions': False},
     style={'width': '100%'}
 )
-
+# Sidebar with filters
 sidebar = dbc.Col([
     html.H5('Filters'),
     html.Br(),
@@ -86,79 +70,83 @@ sidebar = dbc.Col([
 ],
     md=3,
     style={
-        'background-color': '#e6e6e6',
+        'background-color': '#E6E6E6',
         'padding': 10,
         'border-radius': 3,
     }
-) 
-
+)
 # Layout
 app.layout = dbc.Container([
     dbc.Row(dbc.Col(title)),
     dbc.Row([
         sidebar,
         dbc.Col([
-            dbc.Col([table]),
-            dbc.Row([
-                dbc.Col(histogram),
-                dbc.Col(scatter),
-            ]),
-            dbc.Row([
-                dbc.Col(dvc.Vega(id='line_chart', opt={'actions': False}))
-            ])
+            dbc.Row([dbc.Col(salary_trend)]),  # Keep the trend line graph
+            dbc.Row([dbc.Col(salary_by_experience_level)]),  # Clustered bar chart for salary by experience level
         ],
         md=9),
     ])
 ])
-
 @callback(
-    Output('histogram', "spec"),
-    Output('scatter', "spec"),
-    Output('line_chart', "spec"),
-    Input('job_filter', "value"), 
-    Input('exp_level_filter', "value"), 
-    Input('emp_type_filter', "value"), 
-    prevent_initial_call=True
+    Output('salary-trend', "spec"),
+    Output('salary-by-experience-level', "spec"),
+    Input('job_filter', "value"),
+    Input('exp_level_filter', "value"),
+    Input('emp_type_filter', "value")
 )
-
-def update_charts(selected_jobs, selected_exp, selected_emp):
-    print("Callback triggered!")  # Debugging statement
-    
+def update_charts(selected_jobs, selected_exp_levels, selected_emp_types):
+    # Filter data based on selected filters
     df_filtered = df.copy()
-
-    # Apply dropdown filters
+    # Filter by job title if selected
     if selected_jobs:
         df_filtered = df_filtered[df_filtered['job_title'].isin(selected_jobs)]
-    if selected_exp:
-        df_filtered = df_filtered[df_filtered['experience_level'].isin(selected_exp)]
-    if selected_emp:
-        df_filtered = df_filtered[df_filtered['employment_type'].isin(selected_emp)]
-
-    print(f"Filtered DataFrame shape: {df_filtered.shape}")  # Debugging statement
-
-    if df_filtered.empty:
-        print("Filtered DataFrame is empty!")
-        return {}, {}, {}
-
-    # Generate plots
-    histogram = alt.Chart(df_filtered).mark_bar().encode(
-        alt.X('salary_in_usd:Q', bin=True),
-        alt.Y('count()')
+    # Filter by experience level if selected
+    if selected_exp_levels:
+        df_filtered = df_filtered[df_filtered['experience_level'].isin(selected_exp_levels)]
+    # Filter by employment type if selected
+    if selected_emp_types:
+        df_filtered = df_filtered[df_filtered['employment_type'].isin(selected_emp_types)]
+    # **Trend Line Chart** - Average Salary per Year or by Job Title
+    if not selected_jobs:
+        # If no job title selected, show average salary per year
+        avg_salary_per_year = df_filtered.groupby('work_year', as_index=False)['salary_in_usd'].mean()
+        salary_trend_chart = alt.Chart(avg_salary_per_year).mark_line().encode(
+            x=alt.X('work_year:O', title='Year'),
+            y=alt.Y('salary_in_usd:Q', title='Average Salary in USD'),
+            tooltip=['salary_in_usd']
+        ).properties(
+            width=800,
+            height=400,
+            title="Average Salary Per Year"
+        )
+    else:
+        # If job titles are selected, show salary trend by job title
+        salary_trend_data = df_filtered.groupby(['work_year', 'job_title'], as_index=False)['salary_in_usd'].mean()
+        salary_trend_chart = alt.Chart(salary_trend_data).mark_line().encode(
+            x=alt.X('work_year:O', title='Year'),
+            y=alt.Y('salary_in_usd:Q', title='Average Salary in USD'),
+            color='job_title:N',
+            tooltip=['job_title', 'work_year', 'salary_in_usd']
+        ).properties(
+            width=800,
+            height=400,
+            title="Salary Trend by Job Title"
+        )
+    # **Clustered Bar Chart** - Average Salary by Experience Level for each Year (Clustered)
+    salary_by_experience_level_chart = alt.Chart(df_filtered).mark_bar().encode(
+        x=alt.X('work_year:N', title='Year'),  # X-axis is the year
+        y=alt.Y('mean(salary_in_usd):Q', title='Average Salary in USD'),  # Y-axis is the average salary
+        color='experience_level:N',  # Different colors for experience levels
+        column='experience_level:N',  # Group by experience level for clustered bars
+        tooltip=['work_year', 'experience_level', 'mean(salary_in_usd):Q']  # Tooltip shows experience level and salary
+    ).properties(
+        width=150,  # Width for each bar
+        height=400,
+        title="Average Salary by Experience Level (Clustered by Year)"
+    ).configure_facet(
+        spacing=10  # Adjust the spacing between the clustered bars
     )
-
-    scatter = alt.Chart(df_filtered).mark_point().encode(
-        x=alt.X('salary_in_usd:Q'),
-        y=alt.Y('work_year:O'),
-        tooltip=['job_title', 'salary_in_usd']
-    )
-
-    line_chart = alt.Chart(df_filtered).mark_line().encode(
-        x=alt.X('work_year:O', title='Year'),
-        y=alt.Y('mean(salary_in_usd):Q', title='Average Salary'),
-        color='job_title:N'
-    )
-
-    return histogram.to_dict(), scatter.to_dict(), line_chart.to_dict()
-
+    # Return both charts
+    return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict()
 if __name__ == '__main__':
     app.run(debug=False)
