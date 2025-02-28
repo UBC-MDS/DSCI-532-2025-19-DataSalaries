@@ -10,7 +10,7 @@ dependencies:
     - jupyterlab=4.1  # JupyterLab
     - matplotlib=3.8 
     - dash=2.18
-    - dash-bootstrap-components=1.7
+    - dash-bootstrap-components
     - dash-core-components
     - dash-html-components
     - plotly=6.0
@@ -19,6 +19,6 @@ dependencies:
     - lxml=5.3  # pd.read_html()
     - pip=24.0
     - pip:
-        - dash-vega-components==0.0.1
+        - dash-vega-components
         - pyjanitor==0.30.0
         - gunicorn==23.0.0
