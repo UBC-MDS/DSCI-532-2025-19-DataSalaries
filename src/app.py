@@ -4,7 +4,6 @@ import dash_vega_components as dvc
 from vega_datasets import data
 import pandas as pd
 import altair as alt
-
 # Load dataset
 df = pd.read_csv("data/processed/processed_global_data_salary.csv")
 
@@ -15,7 +14,6 @@ df = df[['work_year', 'job_title', 'experience_level', 'employment_type', 'compa
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
-
 # Components
 title = html.H1(
     '💰DataSalaries - Data Science Salary Insights Dashboard',
@@ -289,3 +287,13 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
 
 if __name__ == '__main__':
     app.run(debug=False)
+
+
+
+
+
+
+
+
+
+
