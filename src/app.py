@@ -148,5 +148,6 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types):
     )
     # Return both charts
     return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict()
+
 if __name__ == '__main__':
     app.run(debug=False)
