@@ -200,7 +200,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
                 alt.Tooltip('experience_level', title="Experience Level"),
                 alt.Tooltip('mean(salary_in_usd):Q', format=",.0f", title="Avg Salary (USD)")]  
     ).properties(
-        width=80,
+        width=90,
         height=400,
         title=alt.TitleParams(
             text="Average Salary by Experience Level, USD",
