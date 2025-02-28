@@ -11,6 +11,8 @@ dependencies:
     - matplotlib=3.8 
     - dash=2.18
     - dash-bootstrap-components=1.7
+    - dash-core-components
+    - dash-html-components
     - plotly=6.0
     - geopandas=1.0.1
     - tabulate=0.9  # df.to_markdown()
