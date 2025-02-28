@@ -195,7 +195,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
             color=alt.Color('job_title:N', legend=alt.Legend(title=None, orient="top")),
             tooltip=[alt.Tooltip('job_title', title="Job Title"),
                     alt.Tooltip('work_year', title="Year"),
-                    alt.Tooltip('salary_in_usd:Q', format=",.0f", title="Avg Salary (USD)")]
+                    alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
         ).properties(
             width=550,
             height=370,
@@ -216,7 +216,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
         column=alt.Column('work_year:N', title=None, header=alt.Header(labelOrient="bottom")),  
         tooltip=[alt.Tooltip('work_year', title="Year"),
                 alt.Tooltip('experience_level', title="Experience Level"),
-                alt.Tooltip('mean(salary_in_usd):Q', format=",.0f", title="Avg Salary (USD)")]  
+                alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f", title="Avg Salary (USD)")]  
     ).properties(
         width=90,
         height=400,
@@ -250,7 +250,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
             sort=['Small (1-50)', 'Medium (51-250)', 'Large (251+)']
         ), 
         tooltip=[alt.Tooltip('company_size', title="Company Size"),
-                alt.Tooltip('salary_in_usd:Q', format=",.0f", title="Avg Salary (USD)"), 
+                alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)"), 
                 alt.Tooltip('percentage:Q', format=".1f", title="Percentage (%)")]
     ).properties(
         width=300,  
@@ -271,7 +271,7 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
         color=alt.Color('remote_ratio:N', scale=alt.Scale(scheme="oranges"), legend=alt.Legend(title=None, orient="top", offset=-20),
             sort=['On-site', 'Hybrid', 'Fully Remote']),
         tooltip=[alt.Tooltip('remote_ratio', title="Remote Type"),
-                alt.Tooltip('salary_in_usd:Q', format=",.0f", title="Avg Salary (USD)"),
+                alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)"),
                 alt.Tooltip('percentage:Q', format=".1f", title="Percentage (%)")
                 ]
     ).properties(
