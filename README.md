@@ -15,8 +15,7 @@ Jump straight to a section below, or scroll down to learn more!
 - [License & Data Source](#-license--data-source) 
 
 ## 👥 Who We Are
-
-We are a data analytics consultancy firm specializing in job market insights, dedicated to providing clear, data-driven analysis to support career planning and market research. Our team combines expertise in data science and labor market trends to deliver actionable insights to job seekers and employers.
+The DataSalaries Dashboard was developed by a group of data professionals, including Jessie Zhang, Rashid Mammadov, Tianjiao Jiang, and Karlygash Zhakupbayeva. Driven by a passion for data analytics, our team is dedicated to enhancing salary transparency and providing actionable career insights for data professionals. By combining expertise in data science and labor market trends, we aim to empower job seekers and employers with data-driven insights for informed decision-making.
 
 ## 📌 Why We Built This  
 
