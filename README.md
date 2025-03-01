@@ -30,7 +30,7 @@ DataSalaries provides **interactive salary visualizations**, allowing users to:
 
 By providing salary trends from various perspectives, we believe our dashboard app could empower job seekers and employers with clear, data-driven salary insights for better decision-making.  
 
-## 📊 Features  
+## 📊 Features & Demo
 
 ✅ **Salary Trends Over Time**: Track salary evolution across years   
 ✅ **Filter by Key Factors**: Customize views based on job title, experience level, and employment setup  
@@ -39,7 +39,7 @@ By providing salary trends from various perspectives, we believe our dashboard a
 ### The Dashboard Demo
 
 The dashboard provides an intuitive interface for exploring salary trends across multiple dimensions.  
-- Users can try the dashboard here 👉 [Deployed Link](TODO: Insert the live link)
+- Users can try the dashboard here 👉 [Live Demo](Thttps://dsci-532-2025-19-datasalaries.onrender.com)
 - Here is a short demo GIF showcasing the dashboard in action: ![Demo of Dashboard](img/demo.gif)
 
 ## 💻 Running Locally
