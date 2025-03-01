@@ -16,8 +16,6 @@ Jump straight to a section below, or scroll down to learn more!
 - [Get Involved](#-get-involved)  
 - [License & Data Source](#-license--data-source) 
 
----
-
 ## 👥 Who We Are
 
 We are a data analytics consultancy firm specializing in job market insights, dedicated to providing clear, data-driven analysis to support career planning and market research. Our team combines expertise in data science and labor market trends to deliver actionable insights to job seekers and employers.
@@ -27,8 +25,6 @@ We are a data analytics consultancy firm specializing in job market insights, de
 - Karlygash Zhakupbayeva  
 - Jessie Zhang  
 - Tianjiao Jiang  
-
----
 
 ## 📌 Why We Built This  
 
@@ -43,8 +39,6 @@ DataSalaries provides **interactive salary visualizations**, allowing users to:
 
 By providing salary trends from various perspectives, we believe our dashboard app could empower job seekers and employers with clear, data-driven salary insights for better decision-making.  
 
----
-
 ## 📊 Features  
 
 📈 **Salary Trends Over Time**: Track salary evolution across years.  
@@ -56,8 +50,6 @@ By providing salary trends from various perspectives, we believe our dashboard a
 The dashboard provides an intuitive interface for exploring salary trends across multiple dimensions.  
 - Users can try the dashboard here 👉 [Deployed Link](TODO: Insert the live link)
 - Here is a short demo GIF showcasing the dashboard in action: ![Demo of Dashboard](img/demo.gif)
-
----
 
 ## 💻 Running Locally
 To run this dashboard on your local machine, please follow the instructions provided below: 
@@ -84,8 +76,6 @@ After running the app, open your browser and navigate to: [http://127.0.0.1:8050
 
 You should now see the DataSalaries Dashboard live.
 
----
-
 ## 🙌 Get Involved  
 
 We welcome contributions!  
@@ -99,8 +89,6 @@ Open an issue on GitHub!
 ✔️ **Need support?**  
 If you encounter any issues, please reach out by opening an issue on GitHub or contacting the team via zhangj24@student.ubc.ca.    
 
----
-
 ## 📝 License & Data Source  
 
 ### Licenses  
@@ -109,5 +97,3 @@ If you encounter any issues, please reach out by opening an issue on GitHub or c
 
 ### Dataset Attribution
 This project uses data from the [Global Tech Salary Dataset](https://www.kaggle.com/datasets/yaaryiitturan/global-tech-salary-dataset/code) available on Kaggle.
-
----
