@@ -33,17 +33,17 @@ Salaries in data-related jobs vary widely based on different factors such as exp
 
 ### The Solution  
 DataSalaries provides **interactive salary visualizations**, allowing users to:  
-✅ Analyze salary distributions across job roles, experience levels, and employment types.  
-✅ Compare remote vs. on-site pay to evaluate work preferences.  
-✅ Track salary trends over time to make informed career moves.  
+- Analyze salary distributions across job roles, experience levels, and employment types.  
+- Compare remote vs. on-site pay to evaluate work preferences.  
+- Track salary trends over time to make informed career moves.  
 
 By providing salary trends from various perspectives, we believe our dashboard app could empower job seekers and employers with clear, data-driven salary insights for better decision-making.  
 
 ## 📊 Features  
 
-📈 **Salary Trends Over Time**: Track salary evolution across years.  
-🎯 **Filter by Key Factors**: Customize views based on job title, experience level, and employment setup.  
-📊 **Intuitive Visualizations**: Interactive bar charts, pie charts, and trend lines for easy exploration.
+✅ **Salary Trends Over Time**: Track salary evolution across years.  
+✅ **Filter by Key Factors**: Customize views based on job title, experience level, and employment setup.  
+✅ **Intuitive Visualizations**: Interactive bar charts, pie charts, and trend lines for easy exploration.
 
 ### The Dashboard Demo
 
