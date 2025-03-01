@@ -18,12 +18,6 @@ Jump straight to a section below, or scroll down to learn more!
 
 We are a data analytics consultancy firm specializing in job market insights, dedicated to providing clear, data-driven analysis to support career planning and market research. Our team combines expertise in data science and labor market trends to deliver actionable insights to job seekers and employers.
 
-**Team Members:**  
-- Rashid Mammadov 
-- Karlygash Zhakupbayeva  
-- Jessie Zhang  
-- Tianjiao Jiang  
-
 ## 📌 Why We Built This  
 
 ### The Problem  
