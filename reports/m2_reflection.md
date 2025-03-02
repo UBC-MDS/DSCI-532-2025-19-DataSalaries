@@ -23,17 +23,17 @@ In this milestone, we successfully implemented a functional prototype of our **D
 
 We followed **DSCI 531 best practices** for effective visualizations:
 
-✅ **Minimal Clutter**: Focused on key insights without overwhelming users.
-✅ **Distinct Color Palettes**: Different charts use separate color schemes for clarity.
-✅ **Proper Axis Labels & Legends**: Ensured all visualizations are properly labeled.
-✅ **Grid-Based Layout**: Structured the dashboard to maximize readability.
+- ✅ **Minimal Clutter**: Focused on key insights without overwhelming users.
+- ✅ **Distinct Color Palettes**: Different charts use separate color schemes for clarity.
+- ✅ **Proper Axis Labels & Legends**: Ensured all visualizations are properly labeled.
+- ✅ **Grid-Based Layout**: Structured the dashboard to maximize readability.
 
 ## **What Our Dashboard Does Well**
 
-✅ **Clear salary trends** across job roles, experience levels, and employment types.
-✅ **Interactive filters** for dynamic exploration.
-✅ **Clean, structured UI** with good readability.
-✅ **Multi-year salary insights** instead of focusing on single-year snapshots.
+- ✅ **Clear salary trends** across job roles, experience levels, and employment types.
+- ✅ **Interactive filters** for dynamic exploration.
+- ✅ **Clean, structured UI** with good readability.
+- ✅ **Multi-year salary insights** instead of focusing on single-year snapshots.
 
 ## **Current Limitations & Future Improvements**
 
