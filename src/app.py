@@ -4,6 +4,7 @@ import dash_vega_components as dvc
 from vega_datasets import data
 import pandas as pd
 import altair as alt
+
 # Load dataset
 df = pd.read_csv("data/processed/processed_global_data_salary.csv")
 
@@ -55,6 +56,13 @@ salary_by_remote_type = dvc.Vega(
     id='salary-by-remote-type',
     opt={'actions': False},
     style={'width': '50%', 'margin-left': '50px'}
+)
+
+# Map chart for average salary by company location
+salary_map = dvc.Vega(
+    id='salary-map',
+    opt={'actions': False},
+    style={'width': '100%'}
 )
 
 # Sidebar with filters
@@ -132,6 +140,9 @@ app.layout = dbc.Container([
                 dbc.Col(salary_by_experience_level, md=7),
                 dbc.Col(salary_by_remote_type, md=3)
             ]),
+            dbc.Row([
+                dbc.Col(salary_map, md=12)
+            ]),
         ])
     ]),
     footer
@@ -142,6 +153,7 @@ app.layout = dbc.Container([
     Output('salary-by-experience-level', "spec"),
     Output('salary-by-company-size', "spec"),
     Output('salary-by-remote-type', "spec"),
+    Output('salary-map', "spec"), 
     Input('job_filter', "value"),
     Input('exp_level_filter', "value"),
     Input('emp_type_filter', "value"),
@@ -283,12 +295,62 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
         )
     )
 
-    return salary_trend_chart.to_dict(), salary_by_experience_level_chart.to_dict(), salary_by_company_size_chart.to_dict(), salary_by_remote_ratio_chart.to_dict()
+    # Map Visualization: Average Salary by Company Location
+    avg_salary_by_country = df_filtered.groupby('company_location', as_index=False)['salary_in_usd'].mean()
+    country_mapping = {
+    'Australia': 36, 'United States': 840, 'Ireland': 372, 'Portugal': 620, 'United Kingdom': 826,
+    'Germany': 276, 'India': 356, 'Spain': 724, 'Netherlands': 528, 'Canada': 124, 'Ukraine': 804,
+    'Italy': 380, 'Vietnam': 704, 'Mexico': 484, 'Poland': 616, 'Egypt': 818, 'Denmark': 208,
+    'Honduras': 340, 'Colombia': 170, 'Armenia': 51, 'Central African Republic': 140, 'Philippines': 608,
+    'Lithuania': 440, 'Russia': 643, 'New Zealand': 554, 'Japan': 392, 'France': 250, 'South Africa': 710,
+    'Slovenia': 705, 'Estonia': 233, 'Greece': 300, 'Brazil': 76, 'Switzerland': 756, 'Austria': 40,
+    'Malaysia': 458, 'Sweden': 752, 'Malta': 470, 'Luxembourg': 442, 'Argentina': 32, 'Nigeria': 566,
+    'Ecuador': 218, 'Ghana': 288, 'Finland': 246, 'United Arab Emirates': 784, 'Romania': 642,
+    'American Samoa': 16, 'Singapore': 702, 'Latvia': 428, 'Belgium': 56, 'Turkey': 792, 'Thailand': 764,
+    'Pakistan': 586, 'South Korea': 410, 'Israel': 376, 'Iraq': 368
+    }
+
+    # Apply mapping
+    avg_salary_by_country['id'] = avg_salary_by_country['company_location'].map(country_mapping).astype(int)
+    # Base map with country outlines
+    base_map = alt.Chart(alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')).mark_geoshape(
+        stroke='white',
+        fill='lightgrey'
+    ).project(
+        type='naturalEarth1'
+    ).properties(
+        width=800,
+        height=500,
+        title=alt.TitleParams(
+            text="Average Salary by Country, USD",
+            anchor="middle"
+        )
+
+    )
+
+    # Choropleth (color-coded country salaries)
+    salary_for_map = alt.Chart(alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')).mark_geoshape().encode(
+        color=alt.Color('salary_in_usd:Q', scale=alt.Scale(scheme="blues"), legend=alt.Legend(title=None)),
+        tooltip=[alt.Tooltip('company_location:N', title="Country"),
+             alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
+    ).transform_lookup(
+        lookup='id',
+        from_=alt.LookupData(avg_salary_by_country, 'id', ['salary_in_usd', 'company_location'])
+    )
+
+    # Combine map layers
+    map_chart = base_map + salary_for_map
+   
+    return (
+        salary_trend_chart.to_dict(),
+        salary_by_experience_level_chart.to_dict(),
+        salary_by_company_size_chart.to_dict(),
+        salary_by_remote_ratio_chart.to_dict(),
+        map_chart.to_dict()
+    )
 
 if __name__ == '__main__':
-    app.run(debug=False)
-
-
+    app.run(debug=True)
 
 
 
