@@ -6,11 +6,15 @@ from components.charts import salary_trend, salary_by_experience_level, salary_b
 import callbacks.update_charts
 
 # Initialize Dash app
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(
+    __name__, 
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    assets_folder="assets"
+    )
+
 server = app.server
 
 df = load_clean_data()
-
 app.layout = dbc.Container([
     dbc.Row(
         dbc.Col(title)),

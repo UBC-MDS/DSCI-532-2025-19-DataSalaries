@@ -34,18 +34,21 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
         return (salary_trend_chart + points + text_labels).configure_view(stroke=None).to_dict()
 
     else:
-        # Show salary trend by job title if one or more jobs are selected
+        # If job titles are selected, show salary trend by job title
         salary_trend_data = df_filtered.groupby(['work_year', 'job_title'], as_index=False)['salary_in_usd'].mean()
-        
         salary_trend_chart = alt.Chart(salary_trend_data).mark_line().encode(
-            x=alt.X('work_year:O', title="Year"),
-            y=alt.Y('salary_in_usd:Q', title="Avg Salary (USD)"),
-            color=alt.Color('job_title:N', legend=alt.Legend(title="Job Title")),
-            tooltip=['job_title', 'work_year', 'salary_in_usd']
+            x=alt.X('work_year:O', title=None, axis=alt.Axis(labelAngle=0)),
+            y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
+            color=alt.Color('job_title:N', legend=alt.Legend(title=None, orient="top")),
+            tooltip=[alt.Tooltip('job_title', title="Job Title"),
+                    alt.Tooltip('work_year', title="Year"),
+                    alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
         ).properties(
-            width=550, 
-            height=370, 
-            title="Salary Trend by Job Title"
-        ).configure_view(stroke=None)
+            width=550,
+            height=370,
+            title="Average Salary Trend by Job Titles, USD"
+        ).configure_view(
+            stroke=None
+        )
         
         return salary_trend_chart.to_dict()
