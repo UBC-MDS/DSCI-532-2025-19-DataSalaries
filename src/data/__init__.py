@@ -1,0 +1,1 @@
+from .salary_data import load_clean_data
