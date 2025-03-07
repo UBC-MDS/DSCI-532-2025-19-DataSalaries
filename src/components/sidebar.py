@@ -1,6 +1,6 @@
 from dash import dcc, html
 import dash_bootstrap_components as dbc
-from src.data import load_clean_data
+from ..data import load_clean_data
 
 exp_level_order = ["Entry-level/Junior", "Mid-level", "Senior-level", "Executive-level"]
 remote_type_order = ["On-site", "Hybrid", "Fully Remote"]
