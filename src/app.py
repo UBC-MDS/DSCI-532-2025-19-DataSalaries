@@ -1,7 +1,7 @@
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
 from .components import sidebar, footer, title
-from .components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type
+from .components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type, salary_by_location
 from .callbacks import update_charts
 
 # Initialize Dash app
@@ -27,7 +27,7 @@ app.layout = dbc.Container([
                 dbc.Col(salary_by_remote_type, md=3)
             ]),
             dbc.Row([
-                dbc.Col(salary_map, md=12)
+                dbc.Col(salary_by_location, md=12)
             ]),
         ])
     ]),

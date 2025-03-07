@@ -3,6 +3,7 @@ from .line_chart_trend import create_salary_trend_chart
 from .bar_chart_experience import create_salary_by_experience_chart
 from .donut_chart1_comp_size import create_salary_by_company_size_chart
 from .donut_chart2_remote import create_salary_by_remote_type_chart
+from .map_chart_location import create_salary_by_location_chart
 from ..data.salary_data import load_clean_data
 
 @callback(
@@ -10,11 +11,13 @@ from ..data.salary_data import load_clean_data
     Output('salary-by-experience-level', "spec"),
     Output('salary-by-company-size', "spec"),
     Output('salary-by-remote-type', "spec"),
+    Output('salary-by-location', "spec"),
     Input('job_filter', "value"),
     Input('exp_level_filter', "value"),
     Input('emp_type_filter', "value"),
     Input('remote_type_filter', "value")
 )
+
 def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, selected_remote_types):
     df_filtered = load_clean_data()
     
@@ -31,5 +34,6 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
         create_salary_trend_chart(df_filtered, selected_jobs),
         create_salary_by_experience_chart(df_filtered),
         create_salary_by_company_size_chart(df_filtered),
-        create_salary_by_remote_type_chart(df_filtered)
+        create_salary_by_remote_type_chart(df_filtered),
+        create_salary_by_location_chart(df_filtered), 
     )

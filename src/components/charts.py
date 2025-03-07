@@ -27,3 +27,10 @@ salary_by_remote_type = dvc.Vega(
     opt={'actions': False},
     style={'width': '50%', 'margin-left': '50px'}
 )
+
+# Map chart for average salary by company location
+salary_by_location = dvc.Vega(
+    id='salary-by-location',
+    opt={'actions': False},
+    style={'width': '100%'}
+)
