@@ -1,0 +1,21 @@
+/* Styling for the h1 title instead of using the `style={}` parameter in components file. */
+
+.mytitle {
+    background-color: steelblue;
+    padding: 20px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 48px;
+    border-radius: 3px;
+    margin-left: -10px;  /*Align with sidebar*/
+}
+
+.myfooter {
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
