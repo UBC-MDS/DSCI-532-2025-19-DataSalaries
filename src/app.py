@@ -1,8 +1,8 @@
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
-from components import sidebar, footer, title
-from components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type
-import callbacks.update_charts
+from .components import sidebar, footer, title
+from .components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type
+from .callbacks import update_charts
 
 # Initialize Dash app
 app = Dash(

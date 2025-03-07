@@ -1,9 +1,9 @@
 from dash import Input, Output, callback
-from callbacks.line_chart_trend import create_salary_trend_chart
-from callbacks.bar_chart_experience import create_salary_by_experience_chart
-from callbacks.donut_chart1_comp_size import create_salary_by_company_size_chart
-from callbacks.donut_chart2_remote import create_salary_by_remote_type_chart
-from data.salary_data import load_clean_data
+from .line_chart_trend import create_salary_trend_chart
+from .bar_chart_experience import create_salary_by_experience_chart
+from .donut_chart1_comp_size import create_salary_by_company_size_chart
+from .donut_chart2_remote import create_salary_by_remote_type_chart
+from ..data.salary_data import load_clean_data
 
 @callback(
     Output('salary-trend', "spec"),
