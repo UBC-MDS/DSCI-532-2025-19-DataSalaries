@@ -1,11 +1,12 @@
 from dash import dcc, html
 import dash_bootstrap_components as dbc
+from data import load_clean_data
 
 exp_level_order = ["Entry-level/Junior", "Mid-level", "Senior-level", "Executive-level"]
 remote_type_order = ["On-site", "Hybrid", "Fully Remote"]
+df = load_clean_data()
 
-def create_sidebar(df):
-    return dbc.Col([
+sidebar = dbc.Col([
         html.H5('Filters', style={'font-weight': 'bold'}),
         html.Br(),
         html.Label("Job Title", style={'font-weight': 'bold'}),
