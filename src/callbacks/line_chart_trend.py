@@ -12,9 +12,8 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
             y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
             tooltip=['salary_in_usd']
         ).properties(
-            width=550,
+            width=850,
             height=370,
-            title="Average Salary Trend Over Year, USD"
         )
 
         points = alt.Chart(avg_salary_per_year).mark_point(size=60, filled=True, color='coral').encode(
@@ -43,9 +42,8 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
                     alt.Tooltip('work_year', title="Year"),
                     alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
         ).properties(
-            width=550,
-            height=370,
-            title="Average Salary Trend by Job Titles, USD"
+            width=850,
+            height=370
         ).configure_view(
             stroke=None
         )

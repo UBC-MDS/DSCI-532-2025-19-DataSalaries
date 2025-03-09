@@ -26,10 +26,7 @@ def create_salary_by_company_size_chart(df_filtered):
     ).properties(
         width=300,  
         height=400,
-        title=alt.TitleParams(
-            text="Average Salary by Company Size, USD",
-            anchor="middle"
-        )
+
     )
 
     return salary_by_company_size_chart.to_dict()
