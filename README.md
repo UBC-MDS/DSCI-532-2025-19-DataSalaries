@@ -3,7 +3,7 @@
 ***Explore salary trends, compare pay across roles, and make informed career decisions💼***
 
 ## 🎉 Welcome!  
-Thank you for visiting DataSalaries! This is an interactive dashboard designed to provide data-driven salary insights across various data-related roles. By examining trends over time and comparing salaries across various roles, experience levels, and work environments, the dashboard delivers actionable insights for job seekers, employers, and industry analysts. Our goal is to help users make informed decisions about compensation and career planning based on reliable, data-driven insights.
+Thank you for visiting DataSalaries! This is an interactive dashboard designed to provide data-driven salary insights across various data-related roles. By examining trends over time and comparing salaries across various roles, job locations, experience levels, and work environments, the dashboard delivers actionable insights for job seekers, employers, and industry analysts. Our goal is to help users make informed decisions about compensation and career planning based on reliable, data-driven insights.
 
 Jump straight to a section below, or scroll down to learn more!  
 
@@ -20,13 +20,14 @@ The DataSalaries Dashboard was developed by a group of data professionals, inclu
 ## 📌 Why We Built This  
 
 ### The Problem  
-Salaries in data-related jobs vary widely based on different factors such as experience level, company size, and remote type, etc. However, transparent salary benchmarks remain difficult to access, making it hard for professionals to negotiate fair pay and for companies to make competitive hiring decisions. If we could analyze the key factors influencing salaries in data-related roles, we could provide valuable insights to professionals navigating the job market.  
+Salaries in data-related jobs vary widely based on different factors such as experience level, company size, and remote type. However, transparent salary benchmarks remain difficult to access, making it hard for professionals to negotiate fair pay and for companies to make competitive hiring decisions. Without clear insights into salary trends across different roles and locations, job seekers may struggle to determine their market value, and employers may find it challenging to attract top talent with competitive salaries.
 
 ### The Solution  
 DataSalaries provides **interactive salary visualizations**, allowing users to:  
 - Analyze salary distributions across job roles, experience levels, and employment types  
 - Compare remote vs. on-site pay to evaluate work preferences  
-- Track salary trends over time to make informed career moves  
+- Track salary trends over time to make informed career moves
+- Explore regional salary differences with a map visualization, helping users understand how salaries vary across different locations 
 
 By providing salary trends from various perspectives, we believe our dashboard app could empower job seekers and employers with clear, data-driven salary insights for better decision-making.  
 
@@ -34,6 +35,7 @@ By providing salary trends from various perspectives, we believe our dashboard a
 
 ✅ **Salary Trends Over Time**: Track salary evolution across years   
 ✅ **Filter by Key Factors**: Customize views based on job title, experience level, and employment setup  
+✅ Regional Salary Insights: Interactive map visualization to explore salary differences by country  
 ✅ **Intuitive Visualizations**: Interactive bar charts, pie charts, and trend lines for easy exploration
 
 ### The Dashboard Demo
@@ -59,7 +61,7 @@ To run this dashboard on your local machine, please follow the instructions prov
 
 3. **Run the dashboard:**
     ```bash
-    python src/app.py
+    python -m src.app
     ```
 
 4. **View the Dashboard:**  
