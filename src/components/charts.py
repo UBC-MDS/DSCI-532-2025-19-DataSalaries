@@ -14,18 +14,18 @@ salary_by_experience_level = dvc.Vega(
     style={'width': '100%'}
 )
 
-# Pie chart for average salary by company size
+# Donut chart for average salary by company size
 salary_by_company_size = dvc.Vega(
     id='salary-by-company-size',
     opt={'actions': False},
-    style={'width': '100px'}
+    style={'width': '100%'}
 )
 
-# Pie chart for average salary by remote type
+# Donut chart for average salary by remote type
 salary_by_remote_type = dvc.Vega(
     id='salary-by-remote-type',
     opt={'actions': False},
-    style={'width': '100px'}
+    style={'width': '100%'}
 )
 
 # Map chart for average salary by company location

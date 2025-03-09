@@ -7,14 +7,16 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
     if not selected_jobs:
         # If no job title selected, show average salary per year
         avg_salary_per_year = df_filtered.groupby('work_year', as_index=False)['salary_in_usd'].mean()
+        avg_salary_per_year["Category"] = "Average Salary"
+
         salary_trend_chart = alt.Chart(avg_salary_per_year).mark_line().encode(
             x=alt.X('work_year:O', title=None, axis=alt.Axis(labelAngle=0)),
             y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
+            color=alt.Color('Category:N', legend=alt.Legend(title=None, orient="top")),
             tooltip=['salary_in_usd']
         ).properties(
-            width=550,
-            height=370,
-            title="Average Salary Trend Over Year, USD"
+            width=850,
+            height=300,
         )
 
         points = alt.Chart(avg_salary_per_year).mark_point(size=60, filled=True, color='coral').encode(
@@ -43,9 +45,8 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
                     alt.Tooltip('work_year', title="Year"),
                     alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
         ).properties(
-            width=550,
-            height=370,
-            title="Average Salary Trend by Job Titles, USD"
+            width=850,
+            height=300
         ).configure_view(
             stroke=None
         )

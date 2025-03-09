@@ -38,11 +38,8 @@ def create_salary_by_location_chart(df_filtered):
         type='naturalEarth1'
     ).properties(
         width=800,
-        height=500,
-        title=alt.TitleParams(
-            text="Average Salary by Country, USD",
-            anchor="middle"
-        )
+        height=400,
+
     )
 
     # Choropleth (color-coded country salaries)
