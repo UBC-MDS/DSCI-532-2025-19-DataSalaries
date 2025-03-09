@@ -17,15 +17,18 @@ def create_salary_by_location_chart(df_filtered):
         'Italy': 380, 'Vietnam': 704, 'Mexico': 484, 'Poland': 616, 'Egypt': 818, 'Denmark': 208,
         'Honduras': 340, 'Colombia': 170, 'Armenia': 51, 'Central African Republic': 140, 'Philippines': 608,
         'Lithuania': 440, 'Russia': 643, 'New Zealand': 554, 'Japan': 392, 'France': 250, 'South Africa': 710,
-        'Slovenia': 705, 'Estonia': 233, 'Greece': 300, 'Brazil': 76, 'Switzerland': 756, 'Austria': 40,
+        'Slovenia': 705, 'Estonia': 233, 'Greece': 300, 'Brazil': "076", 'Switzerland': 756, 'Austria': 40,
         'Malaysia': 458, 'Sweden': 752, 'Malta': 470, 'Luxembourg': 442, 'Argentina': 32, 'Nigeria': 566,
         'Ecuador': 218, 'Ghana': 288, 'Finland': 246, 'United Arab Emirates': 784, 'Romania': 642,
         'American Samoa': 16, 'Singapore': 702, 'Latvia': 428, 'Belgium': 56, 'Turkey': 792, 'Thailand': 764,
         'Pakistan': 586, 'South Korea': 410, 'Israel': 376, 'Iraq': 368
     }
 
+    # Convert to three-digit formatted integers
+    country_mapping = {k: f"{int(v):03d}" for k, v in country_mapping.items()}
+    
     # Apply mapping
-    avg_salary_by_country['id'] = avg_salary_by_country['company_location'].map(country_mapping).astype(int)
+    avg_salary_by_country['id'] = avg_salary_by_country['company_location'].map(country_mapping)
 
     # Base map with country outlines
     base_map = alt.Chart(alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')).mark_geoshape(

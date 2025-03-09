@@ -15,10 +15,11 @@ from ..data.salary_data import load_clean_data
     Input('job_filter', "value"),
     Input('exp_level_filter', "value"),
     Input('emp_type_filter', "value"),
-    Input('remote_type_filter', "value")
+    Input('remote_type_filter', "value"),
+    Input('company_location_filter', "value")
 )
 
-def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, selected_remote_types):
+def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, selected_remote_types, selected_locations):
     df_filtered = load_clean_data()
     
     if selected_jobs:
@@ -29,6 +30,8 @@ def update_charts(selected_jobs, selected_exp_levels, selected_emp_types, select
         df_filtered = df_filtered[df_filtered['employment_type'].isin(selected_emp_types)]
     if selected_remote_types:
         df_filtered = df_filtered[df_filtered['remote_ratio'].isin(selected_remote_types)]
+    if selected_locations:
+        df_filtered = df_filtered[df_filtered['company_location'].isin(selected_locations)]
 
     return(
         create_salary_trend_chart(df_filtered, selected_jobs),
