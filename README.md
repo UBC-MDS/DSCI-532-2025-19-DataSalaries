@@ -41,7 +41,7 @@ By providing salary trends from various perspectives, we believe our dashboard a
 ### The Dashboard Demo
 
 The dashboard provides an intuitive interface for exploring salary trends across multiple dimensions.  
-- Users can try the dashboard here 👉 [Live Demo](https://dsci-532-2025-19-datasalaries.onrender.com)
+- Users can try the dashboard here 👉 [Live Demo](https://dsci-532-2025-19-datasalaries.onrender.com/)
 - Here is a short demo GIF showcasing the dashboard in action: ![Demo of Dashboard](img/demo.gif)
 
 ## 💻 Running Locally
