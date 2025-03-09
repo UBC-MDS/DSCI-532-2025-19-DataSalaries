@@ -1,7 +1,7 @@
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
 from .components import sidebar, footer, title
-from .components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type
+from .components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type, salary_by_location
 from .callbacks import update_charts
 
 # Initialize Dash app
@@ -32,9 +32,8 @@ app.layout = dbc.Container([
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
-                        dbc.CardHeader("Map (Coming Soon)", className="card-header"),
-                        dbc.CardBody(
-                            "This section will contain the map visualization.", className="chart-card-body")
+                        dbc.CardHeader("Average Salary by Location", className="card-header"),
+                        dbc.CardBody(salary_by_location, className="chart-card-body")
                     ], className="mb-4"), md=6 
                 ),
                 dbc.Col(
@@ -63,7 +62,8 @@ app.layout = dbc.Container([
                     ], className="mb-4"), md=6
                 )
             ]),
-        ], md=9)
+
+        ])
     ]),
     footer
 ])
