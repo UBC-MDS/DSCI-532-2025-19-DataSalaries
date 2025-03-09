@@ -12,7 +12,7 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
         salary_trend_chart = alt.Chart(avg_salary_per_year).mark_line().encode(
             x=alt.X('work_year:O', title=None, axis=alt.Axis(labelAngle=0)),
             y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
-            color=alt.Color('Category:N', legend=alt.Legend(title=None, orient="top")),
+            color=alt.Color('Category:N', legend=alt.Legend(title=None, orient="top", labelFontSize=14,)),
             tooltip=['salary_in_usd']
         ).properties(
             width=850,
@@ -40,7 +40,7 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
         salary_trend_chart = alt.Chart(salary_trend_data).mark_line().encode(
             x=alt.X('work_year:O', title=None, axis=alt.Axis(labelAngle=0)),
             y=alt.Y('salary_in_usd:Q', title=None, axis=alt.Axis(grid=False)),
-            color=alt.Color('job_title:N', legend=alt.Legend(title=None, orient="top"), scale=alt.Scale(scheme='plasma')),
+            color=alt.Color('job_title:N', legend=alt.Legend(title=None, orient="top",labelFontSize=14), scale=alt.Scale(scheme='plasma')),
             tooltip=[alt.Tooltip('job_title', title="Job Title"),
                     alt.Tooltip('work_year', title="Year"),
                     alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]

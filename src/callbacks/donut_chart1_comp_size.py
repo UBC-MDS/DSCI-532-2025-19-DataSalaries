@@ -17,7 +17,7 @@ def create_salary_by_company_size_chart(df_filtered):
     salary_by_company_size_chart = alt.Chart(salary_by_company_size_data).mark_arc(innerRadius=80).encode(
         theta=alt.Theta('salary_in_usd:Q', title="Average Salary"),  
         color=alt.Color('company_size:N', 
-            scale=alt.Scale(scheme="blues"), legend=alt.Legend(title=None, orient="top", offset=30),
+            scale=alt.Scale(scheme="blues"), legend=alt.Legend(title=None, orient="top", offset=30, labelFontSize=14),
             sort=['Small (1-50)', 'Medium (51-250)', 'Large (251+)']
         ), 
         tooltip=[alt.Tooltip('company_size', title="Company Size"),

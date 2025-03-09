@@ -9,7 +9,7 @@ def create_salary_by_experience_chart(df_filtered):
         y=alt.Y('mean(salary_in_usd):Q', title=None, axis=alt.Axis(grid=False)),  
         color=alt.Color(
             'experience_level:N', 
-            legend=alt.Legend(title=None, orient="top", offset=10),  
+            legend=alt.Legend(title=None, orient="top", labelFontSize=14, offset=10),  
             sort=['Entry-level/Junior', 'Mid-level', 'Senior-level', 'Executive-level']  
         ),
         column=alt.Column('work_year:N', title=None, header=alt.Header(labelOrient="bottom")),  
