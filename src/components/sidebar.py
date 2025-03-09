@@ -11,14 +11,14 @@ sidebar = dbc.Col([
         html.Label("Job Title", style={'font-weight': 'bold'}),
         dcc.Checklist(
             id='job_filter',
-            options=[{'label': html.Span(job, style={'margin-left': '10px'}), 'value': job} for job in df['job_title'].dropna().unique()],
+            options=[{'label': html.Span(job, style={'margin-left': '10px'}), 'value': job} for job in sorted(df['job_title'].dropna().unique())],
             inline=False
         ),
         html.Br(),
         html.Label("Company Location", style={'font-weight': 'bold'}),
         dcc.Dropdown(
             id='company_location_filter',
-            options=[{'label': country, 'value': country} for country in df['company_location'].dropna().unique()],
+            options=[{'label': country, 'value': country} for country in sorted(df['company_location'].dropna().unique())],
             multi=True,
             placeholder="Select Company Location(s)"
         ),
