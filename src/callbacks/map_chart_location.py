@@ -44,7 +44,7 @@ def create_salary_by_location_chart(df_filtered):
 
     # Choropleth (color-coded country salaries)
     salary_for_map = alt.Chart(alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')).mark_geoshape().encode(
-        color=alt.Color('salary_in_usd:Q', scale=alt.Scale(scheme="blues"), legend=alt.Legend(title="Avg Salary (USD)")),
+        color=alt.Color('salary_in_usd:Q', scale=alt.Scale(scheme="blues"), legend=alt.Legend(title="Avg Salary (USD)", labelFontSize=12, titleFontSize=14)),
         tooltip=[alt.Tooltip('company_location:N', title="Country"),
                  alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
     ).transform_lookup(
