@@ -23,7 +23,7 @@ app.layout = dbc.Container([
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
-                        dbc.CardHeader("Salary Trend Over Time", className="card-header"),
+                        dbc.CardHeader("Salary Trend Over Time, USD", className="card-header"),
                         dbc.CardBody(salary_trend, className="chart-card-body")
                     ], className="mb-4"), md=12
                 )
@@ -33,7 +33,7 @@ app.layout = dbc.Container([
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
-                        dbc.CardHeader("Average Salary by Location", className="card-header"),
+                        dbc.CardHeader("Average Salary by Location, USD", className="card-header"),
                         dbc.CardBody(salary_by_location, className="chart-card-body")
                     ], className="mb-4"), md=12
                 )
@@ -43,7 +43,7 @@ app.layout = dbc.Container([
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
-                        dbc.CardHeader("Average Salary by Experience Level", className="card-header"),
+                        dbc.CardHeader("Average Salary by Experience Level, USD", className="card-header"),
                         dbc.CardBody(salary_by_experience_level, className="chart-card-body")
                     ], className="mb-4"), md=12
                 )
@@ -53,13 +53,13 @@ app.layout = dbc.Container([
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
-                        dbc.CardHeader("Average Salary by Company Size", className="card-header"),
+                        dbc.CardHeader("Average Salary by Company Size, USD", className="card-header"),
                         dbc.CardBody(salary_by_company_size, className="chart-card-body")
                     ], className="mb-4"), md=6
                 ),
                 dbc.Col(
                     dbc.Card([
-                        dbc.CardHeader("Average Salary by Remote Type", className="card-header"),
+                        dbc.CardHeader("Average Salary by Remote Type, USD", className="card-header"),
                         dbc.CardBody(salary_by_remote_type, className="chart-card-body")
                     ], className="mb-4"), md=6
                 )
