@@ -7,7 +7,6 @@ remote_type_order = ["On-site", "Hybrid", "Fully Remote"]
 df = load_clean_data()
 
 sidebar = dbc.Col([
-        html.H5('Filters', style={'font-weight': 'bold'}),
         html.Br(),
         html.Label("Job Title", style={'font-weight': 'bold'}),
         dcc.Checklist(
