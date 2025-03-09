@@ -15,10 +15,11 @@ server = app.server
 
 app.layout = dbc.Container([
     dbc.Row(dbc.Col(title)),
+
     dbc.Row([
         sidebar, 
         dbc.Col([
-            # First row: Salary Trend Chart (Full Width)
+            # First row: Salary Trend (Full Width)
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
@@ -28,45 +29,46 @@ app.layout = dbc.Container([
                 )
             ]),
 
-            # Second row: Map and Experience Level Chart (Half & Half)
+            # Second row: Map (Full Width)
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
                         dbc.CardHeader("Average Salary by Location", className="card-header"),
                         dbc.CardBody(salary_by_location, className="chart-card-body")
-                    ], className="mb-4"), md=6 
-                ),
-                dbc.Col(
-                    dbc.Card([
-                        dbc.CardHeader("Average Salary by Experience Level", className="card-header"),
-                        dbc.CardBody(
-                            salary_by_experience_level, className="chart-card-body")
-                    ], className="mb-4"), md=6 
+                    ], className="mb-4"), md=12
                 )
             ]),
 
-            # Third row: Two Donut Charts (Company Size and Remote Type)
+            # Third row: Experience Level (Bar Chart)
+            dbc.Row([
+                dbc.Col(
+                    dbc.Card([
+                        dbc.CardHeader("Average Salary by Experience Level", className="card-header"),
+                        dbc.CardBody(salary_by_experience_level, className="chart-card-body")
+                    ], className="mb-4"), md=12
+                )
+            ]),
+
+            # Fourth row: Two Donut Charts (Company Size & Remote Type)
             dbc.Row([
                 dbc.Col(
                     dbc.Card([
                         dbc.CardHeader("Average Salary by Company Size", className="card-header"),
-                        dbc.CardBody(
-                            salary_by_company_size, className="chart-card-body")
+                        dbc.CardBody(salary_by_company_size, className="chart-card-body")
                     ], className="mb-4"), md=6
                 ),
                 dbc.Col(
                     dbc.Card([
                         dbc.CardHeader("Average Salary by Remote Type", className="card-header"),
-                        dbc.CardBody(
-                            salary_by_remote_type, className="chart-card-body")
+                        dbc.CardBody(salary_by_remote_type, className="chart-card-body")
                     ], className="mb-4"), md=6
                 )
-            ]),
-
-        ])
+            ])
+        ], md=9)
     ]),
     footer
 ])
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

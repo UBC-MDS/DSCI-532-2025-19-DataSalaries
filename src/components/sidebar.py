@@ -15,6 +15,14 @@ sidebar = dbc.Col([
             inline=False
         ),
         html.Br(),
+        html.Label("Company Location", style={'font-weight': 'bold'}),
+        dcc.Dropdown(
+            id='company_location_filter',
+            options=[{'label': country, 'value': country} for country in df['company_location'].dropna().unique()],
+            multi=True,
+            placeholder="Select Company Location(s)"
+        ),
+        html.Br(),
         html.Label("Experience Level", style={'font-weight': 'bold'}),
         dcc.Checklist(
             id='exp_level_filter',
@@ -34,14 +42,6 @@ sidebar = dbc.Col([
             id='remote_type_filter',
             options=[{'label': html.Span(remote_type, style={'margin-left': '10px'}), 'value': remote_type} for remote_type in remote_type_order],
             inline=False,
-        ),
-        html.Br(),
-        html.Label("Company Location", style={'font-weight': 'bold'}),
-        dcc.Dropdown(
-            id='company_location_filter',
-            options=[{'label': country, 'value': country} for country in df['company_location'].dropna().unique()],
-            multi=True,
-            placeholder="Select Company Location(s)"
         ),
     ],
         md=3,

@@ -10,7 +10,7 @@ def create_salary_by_remote_type_chart(df_filtered):
 
     salary_by_remote_ratio_chart = alt.Chart(salary_by_remote_ratio_data).mark_arc(innerRadius=80).encode(
         theta=alt.Theta('salary_in_usd:Q', title="Average Salary"),
-        color=alt.Color('remote_ratio:N', scale=alt.Scale(scheme="oranges"), legend=alt.Legend(title=None, orient="top", offset=-20),
+        color=alt.Color('remote_ratio:N', scale=alt.Scale(scheme="oranges"), legend=alt.Legend(title=None, orient="top", offset=30),
             sort=['On-site', 'Hybrid', 'Fully Remote']),
         tooltip=[alt.Tooltip('remote_ratio', title="Remote Type"),
                 alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)"),
@@ -18,7 +18,7 @@ def create_salary_by_remote_type_chart(df_filtered):
                 ]
     ).properties(
         width=300,
-        height=400,
+        height=350,
     )
 
     return salary_by_remote_ratio_chart.to_dict()

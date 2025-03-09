@@ -17,8 +17,8 @@ def create_salary_by_experience_chart(df_filtered):
                 alt.Tooltip('experience_level', title="Experience Level"),
                 alt.Tooltip('mean(salary_in_usd):Q', format="$,.0f", title="Avg Salary (USD)")]  
     ).properties(
-        width=60,
-        height=400,
+        width=150,
+        height=300,
     ).configure_header(
         labelFontSize=12,
         titleFontSize=16
