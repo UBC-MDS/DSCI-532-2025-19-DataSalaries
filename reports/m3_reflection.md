@@ -33,17 +33,19 @@ Our dashboard follows **DSCI 531 best practices**, prioritizing **clarity, usabi
 - The job title categorization makes the filtering process smoother.
 - Overall, the layout changes also have improved readability.
 
-However, minor areas for improvement remain:
-- **Donut charts** may need further refinement to display proportional data more effectively.
-- The **filtering process** can be further optimized for a more seamless experience.
-- Additional **annotations** could be included in the trend chart to ensure insights remain visible when filtering by job title.
+However, some areas for improvement remain:
+- **Donut charts** may require further refinement to better display proportional data.
+- Due to **data constraints**, the **map chart** could be optimized, as average salaries are influenced by the number of records per country, leading to outliers like Russia showing the highest salary.
+- Additional **annotations** on the trend chart would help ensure insights remain visible when filtering by job title.
 
 ## **Looking Ahead**
 
 In the next phase, we plan to:
 - **Introduce a section button** to provide additional insights and improve the interface.
 - **Enhance visual consistency** by refining colors and layouts for a more cohesive design.
-- **Incorporate peer feedback** to make further usability improvements.
+- **Refine the map chart** to improve accuracy and representation.
+- **Incorporate peer feedback** to further enhance usability.
+- **Add a disclaimer** to clarify data limitations and potential biases.
 
 ## **Get Inspiration from Peers (Challenging)**
 
