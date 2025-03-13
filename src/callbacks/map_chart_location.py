@@ -31,22 +31,32 @@ def create_salary_by_location_chart(df_filtered):
     avg_salary_by_country['id'] = avg_salary_by_country['company_location'].map(country_mapping)
 
     # Base map with country outlines
-    base_map = alt.Chart(alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')).mark_geoshape(
+    # Base map with country outlines (excluding Antarctica)
+    base_map = alt.Chart(
+        alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')
+    ).mark_geoshape(
         stroke='white',
         fill='lightgrey'
+    ).transform_filter(
+        "datum.properties.name !== 'Antarctica'"
     ).project(
         type='naturalEarth1'
     ).properties(
         width=800,
-        height=400,
-
+        height=400
     )
 
-    # Choropleth (color-coded country salaries)
-    salary_for_map = alt.Chart(alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')).mark_geoshape().encode(
-        color=alt.Color('salary_in_usd:Q', scale=alt.Scale(scheme="blues"), legend=alt.Legend(title="Avg Salary (USD)", labelFontSize=12, titleFontSize=14)),
+    # Salary choropleth (excluding Antarctica)
+    salary_for_map = alt.Chart(
+        alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')
+    ).mark_geoshape().transform_filter(
+        "datum.properties.name !== 'Antarctica'"
+    ).encode(
+        color=alt.Color('salary_in_usd:Q', 
+                        scale=alt.Scale(scheme="blues"), 
+                        legend=alt.Legend(title="Avg Salary (USD)", labelFontSize=12, titleFontSize=14)),
         tooltip=[alt.Tooltip('company_location:N', title="Country"),
-                 alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
+                alt.Tooltip('salary_in_usd:Q', format="$,.0f", title="Avg Salary (USD)")]
     ).transform_lookup(
         lookup='id',
         from_=alt.LookupData(avg_salary_by_country, 'id', ['salary_in_usd', 'company_location'])
