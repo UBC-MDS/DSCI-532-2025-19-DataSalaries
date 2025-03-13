@@ -1,8 +1,8 @@
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
-from .components import sidebar, footer, title
+from .components import sidebar, footer, title, collapse_button, collapse_section
 from .components.charts import salary_trend, salary_by_experience_level, salary_by_company_size, salary_by_remote_type, salary_by_location
-from .callbacks import update_charts
+from .callbacks import update_charts, update_button
 
 # Initialize Dash app
 app = Dash(
@@ -14,8 +14,16 @@ app = Dash(
 server = app.server
 
 app.layout = dbc.Container([
-    dbc.Row(dbc.Col(title)),
-
+    dbc.Row([
+                dbc.Col([
+                    title,
+                    collapse_section
+                ]),
+                dbc.Col(
+                    collapse_button,
+                    md=3,
+                )
+            ], className="headerbg"),
     dbc.Row([
         sidebar, 
         dbc.Col([
@@ -71,4 +79,4 @@ app.layout = dbc.Container([
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
