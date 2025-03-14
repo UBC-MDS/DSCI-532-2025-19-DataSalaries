@@ -15,13 +15,11 @@ app = Dash(
     assets_folder="assets",
 )
 
+# Configure cache
 cache.init_app(
     app.server,
-    config={
-        'CACHE_TYPE': 'filesystem',
-        'CACHE_DIR': 'tmp'
-    }
-)
+    config={'CACHE_TYPE': 'simple'})
+
 
 # Deployment server setup
 server = app.server 

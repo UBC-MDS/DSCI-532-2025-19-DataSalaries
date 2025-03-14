@@ -62,9 +62,10 @@
     color: steelblue;
     margin-top: 50px;
     margin-bottom: 20px;
+    margin-left: 50px;
     border: none;
     padding: 5px 5px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 10px;
