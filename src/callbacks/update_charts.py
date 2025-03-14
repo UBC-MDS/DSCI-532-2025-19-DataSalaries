@@ -5,6 +5,8 @@ from .donut_chart1_comp_size import create_salary_by_company_size_chart
 from .donut_chart2_remote import create_salary_by_remote_type_chart
 from .map_chart_location import create_salary_by_location_chart
 from ..data.salary_data import load_clean_data
+import altair as alt
+import pandas as pd
 
 @callback(
     Output('salary-trend', "spec"),
@@ -42,10 +44,28 @@ def update_charts(selected_year, selected_jobs, selected_exp_levels, selected_em
         df_filtered = df_filtered[df_filtered['company_location'].isin(selected_locations)]
         df_filtered_year = df_filtered_year[df_filtered_year['company_location'].isin(selected_locations)]
 
+    # Check if data is available
+    def empty_chart():
+        return alt.Chart(pd.DataFrame({'text': ["No data available for the selected filters."]})).mark_text(
+            align='center',
+            baseline='middle',
+            color='gray',
+            size=16
+        ).encode(
+            text='text:N'
+        ).properties(
+            width=400,
+            height=300
+        )
+
+    def display_chart(chart_func, df, *args):
+        chart = chart_func(df, *args) if not df.empty else empty_chart()
+        return chart if isinstance(chart, dict) else chart.to_dict()
+    
     return(
-        create_salary_trend_chart(df_filtered, selected_jobs),
-        create_salary_by_experience_chart(df_filtered), 
-        create_salary_by_company_size_chart(df_filtered_year),
-        create_salary_by_remote_type_chart(df_filtered_year), 
-        create_salary_by_location_chart(df_filtered_year),  
+        display_chart(create_salary_trend_chart, df_filtered, selected_jobs),
+        display_chart(create_salary_by_experience_chart, df_filtered), 
+        display_chart(create_salary_by_company_size_chart, df_filtered_year),
+        display_chart(create_salary_by_remote_type_chart, df_filtered_year), 
+        display_chart(create_salary_by_location_chart, df_filtered_year)
     )
