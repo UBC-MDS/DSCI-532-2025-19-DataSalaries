@@ -8,6 +8,7 @@ df = load_clean_data()
 
 sidebar = dbc.Col([
         html.Br(),
+        # Add job title checklist
         html.Label("Job Title", style={'font-weight': 'bold'}),
         dcc.Checklist(
             id='job_filter',
@@ -15,6 +16,7 @@ sidebar = dbc.Col([
             inline=False
         ),
         html.Br(),
+        # Add location country dropdown
         html.Label("Company Location", style={'font-weight': 'bold'}),
         dcc.Dropdown(
             id='company_location_filter',
@@ -23,6 +25,7 @@ sidebar = dbc.Col([
             placeholder="Select Company Location(s)"
         ),
         html.Br(),
+        # Add experience level checklist
         html.Label("Experience Level", style={'font-weight': 'bold'}),
         dcc.Checklist(
             id='exp_level_filter',
@@ -30,6 +33,7 @@ sidebar = dbc.Col([
             inline=False,
         ),
         html.Br(),
+        # Add employment type checklist
         html.Label("Employment Type", style={'font-weight': 'bold'}),
         dcc.Checklist(
             id='emp_type_filter',
@@ -37,12 +41,25 @@ sidebar = dbc.Col([
             inline=False,
         ),
         html.Br(),
+        # Add remote type checklist
         html.Label("Remote Type", style={'font-weight': 'bold'}),
         dcc.Checklist(
             id='remote_type_filter',
             options=[{'label': html.Span(remote_type, style={'margin-left': '10px'}), 'value': remote_type} for remote_type in remote_type_order],
             inline=False,
         ),
+        html.Br(),
+        # Add Disclaimer
+        html.Div([
+            html.Strong("Disclaimer: "), 
+            "The dataset used in this dashboard is sourced from publicly available salary data. "
+            "It may not be exhaustive and should be interpreted with caution."
+            ], style={
+                "fontSize": "13px",
+                "color": "gray",
+                "marginTop": "10px",
+                "textAlign": "left"
+            }),       
     ],
         md=3,
         style={
