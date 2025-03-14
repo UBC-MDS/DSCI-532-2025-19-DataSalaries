@@ -21,6 +21,7 @@ import pandas as pd
     Input('remote_type_filter', "value"),
     Input('company_location_filter', "value")
 )
+
 def update_charts(selected_year, selected_jobs, selected_exp_levels, selected_emp_types, selected_remote_types, selected_locations):
     df_filtered = load_clean_data()
 

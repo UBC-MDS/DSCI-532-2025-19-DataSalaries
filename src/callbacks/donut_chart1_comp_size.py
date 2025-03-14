@@ -1,5 +1,7 @@
 import altair as alt
+from src.utils.cache import cache
 
+@cache.memoize()
 def create_salary_by_company_size_chart(df_filtered_year):
     """Creates a donut chart for average salary by company size."""
     

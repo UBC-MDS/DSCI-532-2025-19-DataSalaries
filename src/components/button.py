@@ -10,7 +10,7 @@ collapse_button = dbc.Button(
 
 collapse_section = dbc.Collapse(
     html.P("""
-        This dashboard provides insights into salary trends across industries, locations, and experience levels. Use the filters to explore salaries by company, region, and job category."""),
+        This dashboard provides a comprehensive view of salary trends, analyzing variations across job titles, experience levels, locations, and company characteristics over time. Use the filters to dynamically explore salary distributions and gain insights into evolving compensation patterns across different regions and roles!"""),
     id="collapse",
     className="collapse-ct"
 )
