@@ -1,9 +1,9 @@
 import altair as alt
 
-def create_salary_by_company_size_chart(df_filtered):
+def create_salary_by_company_size_chart(df_filtered_year):
     """Creates a donut chart for average salary by company size."""
     
-    salary_by_company_size_data = df_filtered.groupby(['company_size'] , as_index=False)['salary_in_usd'].mean()
+    salary_by_company_size_data = df_filtered_year.groupby(['company_size'] , as_index=False)['salary_in_usd'].mean()
     company_size_labels = {
     'L': 'Large (251+)',
     'M': 'Medium (51-250)',
