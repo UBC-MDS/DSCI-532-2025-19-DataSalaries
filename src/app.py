@@ -6,6 +6,7 @@ from .components.charts import (
     salary_by_remote_type, salary_by_location
 )
 from .callbacks import update_charts, update_button
+from .data import load_clean_data
 
 # Initialize Dash app
 app = Dash(
@@ -16,6 +17,7 @@ app = Dash(
 
 server = app.server
 
+df = load_clean_data()
 # Define tabs
 tabs = dbc.Tabs(
     [
@@ -48,7 +50,21 @@ tabs = dbc.Tabs(
                 dbc.Row(
                     dbc.Col(
                         dbc.Card([
-                            dbc.CardHeader("Average Salary by Location, USD", className="card-header"),
+                             dbc.CardHeader(
+                                     dbc.Row([
+                                        dbc.Col(html.Span("Average Salary by Location, USD", className="card-header-text"), width="auto"),
+                                        dbc.Col(
+                                             dcc.Dropdown(
+                                                id="year_filter",
+                                                options=[{"label": str(year), "value": year} for year in sorted(df["work_year"].unique())],
+                                                value=df["work_year"].max(),
+                                                clearable=False,
+                                                className="chart-dropdown",
+                                                ), width="auto", className="dropdown-container"
+                                            )
+                                        ], align="center", justify="center"),
+                                    className="card-header"
+                                ),
                             dbc.CardBody(salary_by_location, className="chart-card-body")
                         ], className="mb-4"), md=12
                     )
