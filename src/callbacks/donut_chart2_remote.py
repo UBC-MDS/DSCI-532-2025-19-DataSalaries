@@ -1,9 +1,9 @@
 import altair as alt
 
-def create_salary_by_remote_type_chart(df_filtered):
+def create_salary_by_remote_type_chart(df_filtered_year):
     """Creates a donut chart for average salary by remote type."""
     
-    salary_by_remote_ratio_data = df_filtered.groupby('remote_ratio', as_index=False)['salary_in_usd'].mean()
+    salary_by_remote_ratio_data = df_filtered_year.groupby('remote_ratio', as_index=False)['salary_in_usd'].mean()
     salary_by_remote_ratio_data['total_salary'] = salary_by_remote_ratio_data['salary_in_usd'].sum()
     salary_by_remote_ratio_data['percentage'] = (salary_by_remote_ratio_data['salary_in_usd'] / salary_by_remote_ratio_data['total_salary']) * 100
 

@@ -2,13 +2,13 @@ import altair as alt
 import pandas as pd
 from vega_datasets import data
 
-def create_salary_by_location_chart(df_filtered):
+def create_salary_by_location_chart(df_filtered_year):
     """
     Generates a choropleth map of average salaries by country.
     """
     
     # Compute average salary by country
-    avg_salary_by_country = df_filtered.groupby('company_location', as_index=False)['salary_in_usd'].mean()
+    avg_salary_by_country = df_filtered_year.groupby('company_location', as_index=False)['salary_in_usd'].mean()
     
     # Country mapping to numeric IDs for visualization
     country_mapping = {
@@ -30,7 +30,6 @@ def create_salary_by_location_chart(df_filtered):
     # Apply mapping
     avg_salary_by_country['id'] = avg_salary_by_country['company_location'].map(country_mapping)
 
-    # Base map with country outlines
     # Base map with country outlines (excluding Antarctica)
     base_map = alt.Chart(
         alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')
