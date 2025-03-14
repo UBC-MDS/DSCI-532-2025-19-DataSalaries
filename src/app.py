@@ -8,6 +8,8 @@ from .components.charts import (
 from .callbacks import update_charts, update_button
 from .data import load_clean_data
 
+from flask_caching import Cache
+
 # Initialize Dash app
 app = Dash(
     __name__, 
@@ -17,7 +19,14 @@ app = Dash(
 
 server = app.server
 
-df = load_clean_data()
+cache = Cache(app.server, config={'CACHE_TYPE': 'simple'})
+
+@cache.memoize()
+def get_data():
+    return load_clean_data()
+
+df = get_data()
+
 # Define tabs
 tabs = dbc.Tabs(
     [
