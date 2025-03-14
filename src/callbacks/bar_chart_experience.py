@@ -1,5 +1,7 @@
 import altair as alt
+from src.utils.cache import cache
 
+@cache.memoize()
 def create_salary_by_experience_chart(df_filtered):
     """
     Creates a bar chart showing salary by experience level.

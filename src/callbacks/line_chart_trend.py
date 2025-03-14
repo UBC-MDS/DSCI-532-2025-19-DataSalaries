@@ -1,6 +1,8 @@
 import altair as alt
 import pandas as pd
+from src.utils.cache import cache
 
+@cache.memoize()
 def create_salary_trend_chart(df_filtered, selected_jobs):
     """Creates the salary trend chart over the years."""
     
