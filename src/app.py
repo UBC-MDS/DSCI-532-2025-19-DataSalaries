@@ -13,6 +13,7 @@ app = Dash(
     __name__, 
     external_stylesheets=[dbc.themes.BOOTSTRAP],
     assets_folder="assets",
+    title="DataSalaries Dashboard"
 )
 
 # Configure cache
