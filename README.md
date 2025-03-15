@@ -39,11 +39,11 @@ By providing salary trends from various perspectives, we believe our dashboard a
 
 ## 📊 Features & Demo
 
-✅ **Salary Trends Over Time**: Track salary evolution across years
+✅ **Salary Trends Over Time**: Track salary evolution across years  
 ✅ **Filter by Key Factors**: Customize views based on job title, experience level, and employment setup  
-✅ **Regional Salary Insights**: Interactive map visualization to explore salary differences by country
-✅ **Year Filter** – Compare salary data from different years to observe employment trends
-✅ **Intuitive Visualizations**: Interactive bar charts, pie charts, and trend lines for easy exploration
+✅ **Regional Salary Insights**: Interactive map visualization to explore salary differences by country  
+✅ **Year Filter** – Compare salary data from different years to observe employment trends  
+✅ **Intuitive Visualizations**: Interactive bar charts, pie charts, and trend lines for easy exploration  
 
 ### The Dashboard Demo
 
