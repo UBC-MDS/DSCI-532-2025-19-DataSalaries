@@ -6,7 +6,21 @@ from src.utils.cache import cache
 @cache.memoize()
 def create_salary_by_location_chart(df_filtered_year):
     """
-    Generates a choropleth map of average salaries by country.
+    Generates a choropleth map displaying the average salaries by country.
+
+    Parameters
+    ----------
+    df_filtered_year : pandas.DataFrame
+        A filtered DataFrame containing salary data for a specific year. 
+
+    Returns
+    -------
+    dict
+        A dictionary representation of an Altair choropleth map displaying average salary data by country.
+    
+    Example
+    -------
+    >>> create_salary_by_location_chart(data)
     """
     
     # Compute average salary by country

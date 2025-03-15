@@ -3,7 +3,25 @@ from src.utils.cache import cache
 
 @cache.memoize()
 def create_salary_by_company_size_chart(df_filtered_year):
-    """Creates a donut chart for average salary by company size."""
+    """
+    Creates a donut chart visualizing the average salary by company size.
+
+    Parameters
+    ----------
+    df_filtered_year : pandas.DataFrame
+        A filtered DataFrame containing salary data for a specific year. 
+
+    Returns
+    -------
+    dict
+        A dictionary representation of an Altair donut chart displaying 
+        the average salary by company size, with color-coded categories 
+        and percentage breakdown.
+    
+    Example
+    -------
+    >>> create_salary_by_company_size_chart(data)
+    """
     
     salary_by_company_size_data = df_filtered_year.groupby(['company_size'] , as_index=False)['salary_in_usd'].mean()
     company_size_labels = {
