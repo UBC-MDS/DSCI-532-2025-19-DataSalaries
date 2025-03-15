@@ -45,3 +45,11 @@ This week’s updates are in line with **DSCI 531 best practices**, focusing on 
 
 However, there are still a few areas that need improvement:
 - **Advanced Analytical Tools**: If we had more time, the addition of **advanced filtering** or **customizable data views** would allow users to interact with the data in more complex ways, offering deeper insights.
+
+### **Insights and Feedback Reflection**
+
+One key insight we gained this week was from feedback on the clarity of the map visualization. Initially, our map was cluttered with excessive geographical areas, which detracted from its effectiveness. By removing Antarctica, we were able to streamline the visualization and allow the remaining regions to have more focused attention. This was a valuable realization about how minor adjustments in visualization can significantly enhance clarity.
+
+Additionally, the feedback we received regarding interactivity highlighted that users preferred smoother transitions between data views, leading to the decision to incorporate tabbed navigation. The ability to switch between trends and yearly data seamlessly has proven to improve the user experience substantially.
+
+However, one aspect that could have further supported the development of a high-quality dashboard would be more detailed user testing focused on edge cases or rare data combinations. While the overall functionality is solid, having more input on how users interact with the dashboard in real-world scenarios could help refine it further.
