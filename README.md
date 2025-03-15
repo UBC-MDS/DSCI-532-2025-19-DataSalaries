@@ -11,7 +11,7 @@ Jump straight to a section below, or scroll down to learn more!
 - [Why We Built This](#-why-we-built-this) 
 - [Features & Demo](#-features--demo)  
 - [Running Locally](#-running-locally)
-- [Running Tests](#-running-tests) 
+- [Running Tests](#-running-tests)
 - [Get Involved](#-get-involved)  
 - [License & Data Source](#-license--data-source) 
 
@@ -69,10 +69,9 @@ To run this dashboard on your local machine, please follow the instructions prov
 
 4. **View the Dashboard:**  
 After running the app, open your browser and navigate to: [http://127.0.0.1:8050/](http://127.0.0.1:8050/)  
-
 You should now see the DataSalaries Dashboard live!
 
-## 🛠️ Running Tests  
+## 🛠️ Running Tests
 
 To ensure the dashboard functions correctly, we have implemented automated tests. To run the tests, follow these steps:
 
@@ -83,7 +82,7 @@ To ensure the dashboard functions correctly, we have implemented automated tests
    ```
    This will run all test cases and display results
 
-2. **Interpreting test results**
+2. **Interpreting test results**  
 ✅ If all tests pass, you will see green checkmarks in the output.
 ❌ If any test fails, the terminal will provide details on the error.
 
