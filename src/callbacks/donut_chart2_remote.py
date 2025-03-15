@@ -1,5 +1,7 @@
 import altair as alt
+from src.utils.cache import cache
 
+@cache.memoize()
 def create_salary_by_remote_type_chart(df_filtered_year):
     """Creates a donut chart for average salary by remote type."""
     

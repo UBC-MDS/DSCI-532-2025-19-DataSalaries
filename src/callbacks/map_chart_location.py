@@ -1,7 +1,9 @@
 import altair as alt
 import pandas as pd
 from vega_datasets import data
+from src.utils.cache import cache
 
+@cache.memoize()
 def create_salary_by_location_chart(df_filtered_year):
     """
     Generates a choropleth map of average salaries by country.
