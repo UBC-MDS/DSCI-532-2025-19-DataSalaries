@@ -2,49 +2,68 @@
 
 This week, our team focused on **refining** the **DataSalaries Dashboard**, incorporating user feedback, and addressing areas that could further enhance both **usability** and **visual clarity**. Additionally, we made several **performance improvements** to speed up data loading and enhance user experience. These included **binary data format loading**, **caching for specific functions**, and various updates to the dashboard’s UI, such as setting a **favicon**, updating the **GIF animation**, and refreshing outdated **screenshots and descriptions** in the README. We also **added docstrings for functions** to improve code documentation and maintainability.
 
-### **Implemented Features**
+### **Changes Since Milestone 3**
 
-#### 1. **Tabbed Layout for Improved Data Organization (#81)**
-   We introduced a **tabbed layout** to better organize the dashboard into two distinct sections: one displaying **trends over time** with line and bar charts, and the other showcasing **yearly data** with a map and pie charts. This new layout enhances **navigation** by clearly separating different types of data, allowing users to easily focus on either trends or yearly statistics. The tabs provide a more structured user experience, improving usability by reducing clutter.
+1. **Tabbed Chart Organization:**
+   We restructured the dashboard into **tabbed pages**, enabling users to separately explore **salary trends**, **location-based salaries**, and **employment factors** across different years. This change improves navigation by clearly dividing the data into manageable sections, making the dashboard more organized and user-friendly.
 
-#### 2. **Dropdown for Data Selection and No Data Handling (#82)**
-   We added a **dropdown menu** on the second tab to enable users to filter yearly data. Additionally, we implemented a **text notification** that informs users when no data is available for a specific selection. This feature prevents the dashboard from appearing broken when certain data is missing and ensures a seamless user experience, especially when users may choose filters that result in empty datasets.
+2. **Year Selection Feature:**
+   Instead of defaulting to the most recent data, we added a **dropdown** to let users select and analyze salary data from different years. This new feature offers greater flexibility and allows users to explore historical salary trends.
 
-### **Minor Updates**
+3. **Improved Handling of Missing Data:**
+   When filtered data is unavailable, the dashboard now displays a **message** indicating that there is no data available instead of showing empty charts. This prevents the dashboard from appearing broken and improves user experience by offering clarity.
 
-#### 1. **Collapsible About Section (#83)**
-   We introduced a **collapsible "About" section** that provides background information about the dashboard and its data. This feature improves the user interface by keeping the layout clean while still offering additional details when needed.
+4. **Dashboard Information Button:**
+   A new **"About" button** was added in the header, providing a concise description of the dashboard’s purpose. This feature allows users to quickly understand the data and context, enhancing the overall user experience.
 
-#### 2. **Map Refinement: Removal of Antarctica (#84)**
-   To enhance the map’s focus, we decided to **remove Antarctica**. This adjustment allows the rest of the map to expand and makes the visual display cleaner, focusing the user’s attention on the relevant data regions. This change contributes to a more visually balanced presentation.
+5. **Testing and Documentation:**
+   - We set up **unit tests** to validate the key functions of the dashboard, ensuring the data and visualizations behave as expected.
+   - We also **added docstrings** to all functions to improve **code clarity** and maintainability, ensuring future developers can easily understand and extend the code.
+   - **Code comments** were added throughout to enhance readability and explain the purpose behind key sections of the code.
 
-#### 3. **Consistency in Y-Axis Scale (#85)**
-   We ensured that the **y-axis scale** remains consistent across different filters. This update improves data comparison by providing a more stable reference point, allowing users to evaluate trends and data points more easily without having to adjust to shifting scales.
+### **Performance Enhancements**
 
-#### 4. **Font Size Increase for Year on X-Axis (#88)**
-   To improve readability, we **increased the font size** for the **year labels** on the x-axis. This small change improves the clarity of the time-based data and makes it easier for users to understand trends over time, particularly for those viewing the dashboard on smaller screens.
+1. **Faster Data Loading:**
+   We switched from **read_csv** to a **binary format** for faster data loading, reducing the time it takes to process and display data. This was a significant performance improvement.
 
-#### 5. **Legend Enhancement (#86)**
-   We made adjustments to the **legend** by displaying the **full names** of job titles rather than abbreviations. This change improves the clarity and usability of the dashboard, ensuring that users can quickly and accurately interpret the data represented by each color.
+2. **Caching:**
+   We implemented **caching** for all charts to improve rendering speed, making the dashboard more responsive, especially when interacting with different filters.
 
-#### 6. **Color Consistency in Line Chart (#87)**
-   To ensure that the **line chart** remains consistent, we fixed the color mappings for job titles. Now, the colors are **mapped consistently** to the same job titles regardless of the filter or selection, preventing confusion and making the chart easier to understand.
+### **Code and UI Refinements**
 
-### **Changes from Proposal**
+1. **Code Structure:**
+   To improve the maintainability of the project, we moved the layout code from the main `app.py` file into a separate file. This modular approach simplifies future updates and enhances collaboration.
 
-- The **tabbed layout** was added as a response to usability concerns from earlier iterations, offering a clearer way to present different data views (trends vs yearly data).
-- The **dropdown filter** and **text notification for no data** were introduced to improve user interaction and prevent a broken experience.
-- We also **removed Antarctica from the map** for better map usability, deviating from the original design but improving visual clarity.
+2. **UI Enhancements:**
+   - Enhanced the **collapsible button description** and added a **disclaimer** in the sidebar to clearly highlight data limitations.
+   - Ensured that **line chart colors remain consistent** across different selections to avoid confusion.
+   - Fixed minor **formatting issues** to improve UI consistency.
 
-### **Reflection on Visualization and Functionality**
+### **Branding Enhancements**
 
-This week’s updates are in line with **DSCI 531 best practices**, focusing on **clear communication, effective design**, and **usability**:
-- The **tabbed layout** significantly improves organization and navigation between data views.
-- The **dropdown filter** and **text notification** enhance the user experience, especially when no data is available.
-- **Consistency in color and axes** helps maintain clarity and avoids visual confusion, particularly in charts and maps.
+We updated the **favicon** and changed the browser tab title from "Dash" to our dashboard’s name. These branding updates contribute to a more professional and polished look.
 
-However, there are still a few areas that need improvement:
-- **Advanced Analytical Tools**: If we had more time, the addition of **advanced filtering** or **customizable data views** would allow users to interact with the data in more complex ways, offering deeper insights.
+### **Deviations from the Proposal**
+
+1. **Tabbed Navigation:**
+   Instead of displaying all four charts on a single page as originally planned, we implemented **tabbed navigation** for better usability. This allows users to focus on one section of data at a time, improving the dashboard’s overall clarity and flow.
+
+2. **Refined Year Filtering:**
+   Rather than applying **year filters globally**, we introduced a **dropdown in the second tab** for focused analysis. This makes it easier to filter and examine data by specific years without overwhelming the user.
+
+3. **Handling of Missing Data:**
+   The dashboard now explicitly informs users when their selections result in **no data**, enhancing usability by providing immediate feedback instead of leaving users with empty visualizations.
+
+4. **Header Button Addition:**
+   Added an **About** button in the header to provide quick context about the dashboard’s purpose, which was not part of the original plan but significantly improves the user experience.
+
+### **Limitations and Areas for Improvement**
+
+1. **Rendering Performance:**
+   While we implemented performance improvements, the dashboard still experiences **slow rendering** when accessed via the demo link due to **Altair’s processing time**. This could potentially impact user experience, especially when working with large datasets or numerous filters.
+
+2. **Y-Axis Scaling Considerations:**
+   Although we fixed the **y-axis scale** for the trend line chart to maintain consistency across filters, the **bar chart** does not have a fixed y-axis scale. This is because extreme values, particularly at the executive level, could distort the visualization if a fixed scale were applied. This remains a challenge for the bar chart’s effectiveness in certain scenarios.
 
 ### **Insights and Feedback Reflection**
 
