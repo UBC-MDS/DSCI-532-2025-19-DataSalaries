@@ -1,67 +1,59 @@
 ## Milestone 4 - Reflection
 
-This week, our team focused on **refining the DataSalaries Dashboard**, incorporating user feedback, and addressing areas that could further enhance both usability and visual clarity. Additionally, we made several performance improvements to speed up data loading and updated the dashboard’s UI to make our app more appealing.
+This week, our team focused on **enhancing the DataSalaries Dashboard** by incorporating user feedback, refining visual clarity, and optimizing performance. We made improvements to navigation, interactivity, and data processing speed, ensuring a smoother user experience.
 
 ### Key Changes Since Milestone 3
 
-1. **Tabbed Chart Organization:**
-   We restructured the dashboard into tabbed pages, enabling users to separately explore **salary trends**, **location-based salaries**, and **employment factors** across different years. This change improves navigation by clearly dividing the data into manageable sections, making the dashboard more organized and user-friendly.
-
-2. **Year Selection Feature:**
-   Instead of defaulting to the most recent data, we added a dropdown to let users select and analyze salary data from different years. This new feature offers greater flexibility and allows users to explore historical salary trends.
-
-3. **Improved Handling of Missing Data:**
-   When filtered data is unavailable, the dashboard now displays a message indicating that there is no data available instead of showing empty charts. This prevents the dashboard from appearing broken and improves user experience by offering clarity.
-
-4. **Dashboard Information Button:**
-   A new "About" button was added in the header, providing a concise description of the dashboard’s purpose. This feature allows users to quickly understand the data and context, enhancing the overall user experience.
-
-5. **Performance Enhancements:**
-   - We switched from `read_csv` to a binary format for faster data loading, reducing the time it takes to process and display data. 
-   - We implemented caching for all charts to improve rendering speed, making the dashboard more responsive.
-
+1. **Tabbed Chart Organization**
+   - Introduced tabbed navigation to separate salary trends from location and employment factors, improving clarity and accessibility.
+2. **Year Selection Feature**
+   - Added a year dropdown to enable users to explore historical salary trends rather than defaulting to the latest available data.
+3. **Improved Handling of Missing Data**
+   - Instead of displaying blank charts when no data is available, the dashboard now displays an informative message, helping users understand their selection constraints.
+4. **Dashboard Information Button**
+   - Added a new "About" button in the header, providing a concise description of the dashboard’s purpose, allowing users to quickly understand the data and context.
+5. **Performance Enhancements**
+   - Switched from `read_csv` to a binary format for faster data loading, reducing the time it takes to process and display data. 
+   - Implemented caching for all charts to improve rendering speed, making the dashboard more responsive.
 6. **UI Refinements**
    - Enhanced the collapsible button description and added a disclaimer in the sidebar to clearly highlight data limitations.
    - Ensured that line chart colors and y-axis labels remain consistent across different selections to avoid confusion.
-
-7. **Challenging: Testing and Documentation:**
-   - We set up unit tests to validate the key functions of the dashboard, ensuring the data and visualizations behave as expected.
-   - We also added docstrings to all functions and necessary code comments to improve code clarity and maintainability, ensuring future developers can easily understand and extend the code.
+7. **Challenging: Testing and Documentation**
+   - Set up unit tests to validate the key functions of the dashboard, ensuring the data and visualizations behave as expected.
+   - Added docstrings to all functions and necessary code comments to improve code clarity and maintainability.
 
 ### Deviations from the Proposal
 
 1. **Tabbed Navigation:**: Instead of displaying all four charts on a single page as originally planned, we implemented tabbed navigation for better usability. 
-
 2. **Refined Year Filtering:** Rather than applying year filters globally, we introduced a dropdown in the second tab, so that users can filter the year for location info without breaking trend charts.
-
 3. **Handling of Missing Data:** The dashboard now explicitly informs users when their selections result in no data, enhancing usability by providing immediate feedback instead of leaving users with empty visualizations.
-
 4. **Header Button Addition:** Added an "About" button in the header to provide quick context about the dashboard’s purpose, which was not part of the original plan but significantly improves the user experience.
 
 ### Reflection on Visualization and Functionality
 
 Our dashboard follows **DSCI 531 best practices**, prioritizing **clarity, usability, and accessibility**.
-### What Works Well
-1. **User Experience & Navigation:** The tabbed layout improves clarity by separating trend analysis from location and company-related insights. And the year filter dropdown allows users to analyze salary trends across different years dynamically.
+#### What Works Well
+**User Experience & Navigation**  
+   - The tabbed layout allows for easy switching between trend analysis and yearly comparisons.  
+   - The year dropdown lets users analyze historical salary trends dynamically.
+**Enhanced Interactivity & Data Interpretation**  
+   - Consistent color mapping ensures that job roles always retain the same color, improving readability.  
+   - Dynamic messaging for missing data enhances usability, preventing confusion.
+**Performance Optimizations**  
+   - Parquet format significantly speeds up data loading compared to CSV.  
+   - Caching reduces redundant computations, making the dashboard more responsive.
 
-2. **Enhanced Interactivity & Data Interpretation:**
-  - Consistent color mapping ensures that job roles retain the same color in the trend charts, improving readability.
-  - Dynamic messaging for empty selections ensures users receive guidance instead of encountering blank charts.
+#### Limitations and Areas for Improvement
+**Rendering Performance**  
+   - Despite optimizations, Altair’s processing time is still a bottleneck, especially when we click the demo link for the first time.  
+   - Future Improvement:** Consider using Plotly or Vega for faster rendering.
+**Y-Axis Scaling for Bar Charts**  
+   - While the trend line chart has a fixed y-axis scale, the bar charts do not, due to extreme executive-level salaries that distort scaling.  
+   - Future Improvement: Allow users to toggle between fixed and dynamic scaling for better clarity.
+**Additional Features for Future Consideration**  
+   - Incorporating salary percentiles to visualize the distribution rather than relying solely on averages.  
+   - Predictive analytics to project future salary trends based on historical data.
 
-3. **Performance Optimizations:**
-  - Transitioning from CSV to a binary format (Parquet) significantly improved data loading speed.
-  - Implementing caching for chart generation reduced redundant computations and improved response times.
-  
-### Limitations and Areas for Improvement
-1. **Rendering Performance:**
-   - Despite optimizations, **Altair’s processing time** remains a bottleneck, especially when we click demo link for the first time.
-   - Potential Improvement: Consideration for **alternative visualization libraries** such as Plotly or Vega to improve rendering efficiency.
-2. **Y-Axis Scaling Considerations:**
-   - While the trend line chart has a fixed y-axis scale for consistency, the bar charts do not due to extreme salary values at the executive level.
-   - Potential improvement: Adaptive scaling where users can toggle between fixed and dynamic y-axis scales.
-3. **Other Possible Additions:**
-   - Incorporating salary percentiles to show salary distributions rather than just averages.
-   - Introducing trend projections using predictive analytics to estimate future salary trends.
 
 ### Insights and Feedback Reflection
 
