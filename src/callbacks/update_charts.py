@@ -23,6 +23,34 @@ import pandas as pd
 )
 
 def update_charts(selected_year, selected_jobs, selected_exp_levels, selected_emp_types, selected_remote_types, selected_locations):
+    """
+    Updates all charts in the dashboard based on selected filters.
+
+    Parameters
+    ----------
+    selected_year : int
+        The selected year for filtering the data (applies to the map and donut charts).
+    selected_jobs : list of str
+        A list of selected job titles for filtering the dataset.
+    selected_exp_levels : list of str
+        A list of selected experience levels to filter the dataset.
+    selected_emp_types : list of str
+        A list of selected employment types for filtering.
+    selected_remote_types : list of int
+        A list of selected remote work ratios for filtering.
+    selected_locations : list of str
+        A list of selected company locations for filtering.
+
+    Returns
+    -------
+    tuple of dict
+        A tuple containing the updated Altair chart specifications for:
+        - Salary trend chart
+        - Salary by experience level chart
+        - Salary by company size chart
+        - Salary by remote type chart
+        - Salary by location chart
+    """
     df_filtered = load_clean_data()
 
     # Apply year filter only for map and donut charts
@@ -47,6 +75,14 @@ def update_charts(selected_year, selected_jobs, selected_exp_levels, selected_em
 
     # Check if data is available
     def empty_chart():
+        """
+        Creates a placeholder Altair chart displaying a 'No data available' message.
+
+        Returns
+        -------
+        alt.Chart
+            An Altair chart displaying a message when no data is available for the selected filters.
+        """
         return alt.Chart(pd.DataFrame({'text': ["No data available for the selected filters."]})).mark_text(
             align='center',
             baseline='middle',
@@ -60,6 +96,25 @@ def update_charts(selected_year, selected_jobs, selected_exp_levels, selected_em
         )
 
     def display_chart(chart_func, df, *args):
+        """
+        Generates a chart using the specified function and dataset.
+
+        If the dataset is empty, returns a placeholder chart with a 'No data available' message.
+
+        Parameters
+        ----------
+        chart_func : function
+            The function used to generate the chart.
+        df : pandas.DataFrame
+            The filtered dataset used to create the chart.
+        *args : additional arguments
+            Additional parameters required by specific chart functions.
+
+        Returns
+        -------
+        dict
+            A dictionary representation of the Altair chart.
+        """
         chart = chart_func(df, *args) if not df.empty else empty_chart()
         return chart if isinstance(chart, dict) else chart.to_dict()
     

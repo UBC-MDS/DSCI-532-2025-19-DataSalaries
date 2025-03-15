@@ -4,8 +4,26 @@ from src.utils.cache import cache
 @cache.memoize()
 def create_salary_by_experience_chart(df_filtered):
     """
-    Creates a bar chart showing salary by experience level.
+    Generate a bar chart representing the average salary by experience level.
+
+    The chart visualizes the mean salary in USD for different experience levels across multiple years. 
+    Each experience level is assigned a consistent color to maintain clarity. 
+
+    Parameters
+    ----------
+    df_filtered : pandas.DataFrame
+        A DataFrame containing salary data with filtered rows.
+
+    Returns
+    -------
+    dict
+        An Altair chart in dictionary format, suitable for rendering in Dash.
+
+    Example
+    -------
+    >>> create_salary_by_experience_chart(data)
     """
+
     # Assign consistent color to each experience level
     exp_colors = {
     "Entry-level/Junior": "#4E79A7", 

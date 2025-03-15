@@ -4,7 +4,28 @@ from src.utils.cache import cache
 
 @cache.memoize()
 def create_salary_trend_chart(df_filtered, selected_jobs):
-    """Creates the salary trend chart over the years."""
+    """
+    Creates a salary trend chart over the years, displaying either the overall average salary 
+    or trends by job title with consistent color mapping.
+
+    Parameters
+    ----------
+    df_filtered : pandas.DataFrame
+        A DataFrame containing filtered salary data
+    
+    selected_jobs : list of str
+        A list of selected job titles to display in the trend chart. If empty, the chart 
+        will show the overall average salary per year.
+
+    Returns
+    -------
+    dict
+        A dictionary representation of an Altair chart displaying the salary trend.
+
+    Example
+    -------
+    >>> create_salary_trend_chart(data, "Data Analyst")
+    """
     
     # Assign consistent color to each job position
     job_colors = {
@@ -42,7 +63,7 @@ def create_salary_trend_chart(df_filtered, selected_jobs):
         )
         
         text_labels = alt.Chart(avg_salary_per_year).mark_text(
-            align='center', dy=25, fontSize=12, color="black"
+            align='center', dy=-20, fontSize=12, color="black"
         ).encode(
             x='work_year:O',
             y='salary_in_usd:Q',

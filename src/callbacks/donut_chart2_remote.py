@@ -3,8 +3,26 @@ from src.utils.cache import cache
 
 @cache.memoize()
 def create_salary_by_remote_type_chart(df_filtered_year):
-    """Creates a donut chart for average salary by remote type."""
-    
+    """
+    Creates a donut chart displaying the average salary distribution by remote work type.
+
+    Parameters
+    ----------
+    df_filtered_year : pandas.DataFrame
+        A filtered DataFrame containing salary data for a specific year.
+
+    Returns
+    -------
+    dict
+        A dictionary representation of an Altair donut chart displaying 
+        the average salary by company size, with color-coded categories 
+        and percentage breakdown.
+
+    Example
+    -------
+    >>> create_salary_by_remote_type_chart(data)
+    """
+
     salary_by_remote_ratio_data = df_filtered_year.groupby('remote_ratio', as_index=False)['salary_in_usd'].mean()
     salary_by_remote_ratio_data['total_salary'] = salary_by_remote_ratio_data['salary_in_usd'].sum()
     salary_by_remote_ratio_data['percentage'] = (salary_by_remote_ratio_data['salary_in_usd'] / salary_by_remote_ratio_data['total_salary']) * 100
