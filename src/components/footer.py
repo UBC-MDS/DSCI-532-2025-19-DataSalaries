@@ -13,7 +13,7 @@ footer = html.Footer(
             ),
             html.A("🔗GitHub Repo", href="https://github.com/UBC-MDS/DSCI-532-2025-19-DataSalaries", target="_blank",
                    style={'font-size': '14px', 'color': 'blue', 'display': 'inline'}),
-            html.P(" | 📅Last updated: March 13, 2025", style={'font-size': '14px', 'display': 'inline'}),
+            html.P(" | 📅Last updated: March 15, 2025", style={'font-size': '14px', 'display': 'inline'}),
         ],
         className="myfooter"
     )

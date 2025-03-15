@@ -10,7 +10,8 @@ Jump straight to a section below, or scroll down to learn more!
 - [Who We Are](#-who-we-are)
 - [Why We Built This](#-why-we-built-this) 
 - [Features & Demo](#-features--demo)  
-- [Running Locally](#-running-locally)  
+- [Running Locally](#-running-locally)
+- [Running Tests](#-running-tests)
 - [Get Involved](#-get-involved)  
 - [License & Data Source](#-license--data-source) 
 
@@ -27,7 +28,8 @@ DataSalaries provides **interactive salary visualizations**, allowing users to:
 - Analyze salary distributions across job roles, experience levels, and employment types  
 - Compare remote vs. on-site pay to evaluate work preferences  
 - Track salary trends over time to make informed career moves
-- Explore regional salary differences with a map visualization, understanding how salaries vary across locations 
+- Explore regional salary differences with a map visualization, understanding how salaries vary across locations
+- Use the year filter to compare salaries across different years
 
 By providing salary trends from various perspectives, we believe our dashboard app could empower job seekers and employers with clear, data-driven salary insights for better decision-making.  
 
@@ -35,7 +37,8 @@ By providing salary trends from various perspectives, we believe our dashboard a
 
 ✅ **Salary Trends Over Time**: Track salary evolution across years   
 ✅ **Filter by Key Factors**: Customize views based on job title, experience level, and employment setup  
-✅ **Regional Salary Insights**: Interactive map visualization to explore salary differences by country  
+✅ **Regional Salary Insights**: Interactive map visualization to explore salary differences by country
+✅ **Year Filter** – Compare salary data from different years to observe employment trends
 ✅ **Intuitive Visualizations**: Interactive bar charts, pie charts, and trend lines for easy exploration
 
 ### The Dashboard Demo
@@ -68,6 +71,21 @@ To run this dashboard on your local machine, please follow the instructions prov
 After running the app, open your browser and navigate to: [http://127.0.0.1:8050/](http://127.0.0.1:8050/)  
 
 You should now see the DataSalaries Dashboard live!
+
+## 🛠️ Running Tests
+
+To ensure the dashboard functions correctly, we have implemented automated tests. To run the tests, follow these steps:
+
+1. **Run the tests using pytest**  
+   Inside the project root directory, execute the following command:
+   ```bash
+   pytest tests/
+   ```
+   This will run all test cases and display results.
+
+2. **Interpreting test results**
+    - ✅ If all tests pass, you will see green checkmarks in the output.
+    - ❌ If any test fails, the terminal will provide details on the error.
 
 ## 🙌 Get Involved  
 

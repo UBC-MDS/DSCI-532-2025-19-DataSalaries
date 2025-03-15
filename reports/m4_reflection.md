@@ -1,4 +1,4 @@
-## Milestone 4 - Reflection
+# Milestone 4 - Reflection
 
 This week, our team focused on **enhancing the DataSalaries Dashboard** by incorporating user feedback, refining visual clarity, and optimizing performance. We made improvements to navigation, interactivity, and data processing speed, ensuring a smoother user experience.
 
@@ -32,28 +32,26 @@ This week, our team focused on **enhancing the DataSalaries Dashboard** by incor
 ### Reflection on Visualization and Functionality
 
 Our dashboard follows **DSCI 531 best practices**, prioritizing **clarity, usability, and accessibility**.
-#### What Works Well
-**User Experience & Navigation**  
+1. **User Experience & Navigation**  
    - The tabbed layout allows for easy switching between trend analysis and yearly comparisons.  
    - The year dropdown lets users analyze historical salary trends dynamically.
-**Enhanced Interactivity & Data Interpretation**  
+2. **Enhanced Interactivity & Data Interpretation**   
    - Consistent color mapping ensures that job roles always retain the same color, improving readability.  
    - Dynamic messaging for missing data enhances usability, preventing confusion.
-**Performance Optimizations**  
+3. **Performance Optimizations**  
    - Parquet format significantly speeds up data loading compared to CSV.  
    - Caching reduces redundant computations, making the dashboard more responsive.
 
 #### Limitations and Areas for Improvement
-**Rendering Performance**  
+1. **Rendering Performance**  
    - Despite optimizations, Altair’s processing time is still a bottleneck, especially when we click the demo link for the first time.  
-   - Future Improvement:** Consider using Plotly or Vega for faster rendering.
-**Y-Axis Scaling for Bar Charts**  
+   - Future Improvement:** Consider using Plotly or Vega for faster rendering.  
+2. **Y-Axis Scaling for Bar Charts**  
    - While the trend line chart has a fixed y-axis scale, the bar charts do not, due to extreme executive-level salaries that distort scaling.  
-   - Future Improvement: Allow users to toggle between fixed and dynamic scaling for better clarity.
-**Additional Features for Future Consideration**  
+   - Future Improvement: Allow users to toggle between fixed and dynamic scaling for better clarity.  
+3. **Additional Features for Future Consideration**  
    - Incorporating salary percentiles to visualize the distribution rather than relying solely on averages.  
    - Predictive analytics to project future salary trends based on historical data.
-
 
 ### Insights and Feedback Reflection
 
