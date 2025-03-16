@@ -45,7 +45,7 @@ Our dashboard follows **DSCI 531 best practices**, prioritizing **clarity, usabi
 #### Limitations and Areas for Improvement
 1. **Rendering Performance**  
    - Despite optimizations, Altair’s processing time is still a bottleneck, especially when we click the demo link for the first time.  
-   - Future Improvement:** Consider using Plotly or Vega for faster rendering.  
+   - Future Improvement: We could consider using Plotly or Vega for faster rendering.  
 2. **Y-Axis Scaling for Bar Charts**  
    - While the trend line chart has a fixed y-axis scale, the bar charts do not, due to extreme executive-level salaries that distort scaling.  
    - Future Improvement: Allow users to toggle between fixed and dynamic scaling for better clarity.  
